@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Smart Classroom Manager.ipa</key>
+	<array>
+		<dict>
+			<key>architectures</key>
+			<array>
+				<string>armv7</string>
+				<string>arm64</string>
+			</array>
+			<key>certificate</key>
+			<dict>
+				<key>SHA1</key>
+				<string>17F8871B46BF98C3885CFF55652776DFD43C48BC</string>
+				<key>dateExpires</key>
+				<string>11/10/17</string>
+				<key>type</key>
+				<string>iOS Distribution</string>
+			</dict>
+			<key>entitlements</key>
+			<dict>
+				<key>application-identifier</key>
+				<string>D65253D9H7.com.SmartClassroomManager</string>
+				<key>aps-environment</key>
+				<string>production</string>
+				<key>com.apple.developer.team-identifier</key>
+				<string>D65253D9H7</string>
+				<key>get-task-allow</key>
+				<false/>
+			</dict>
+			<key>name</key>
+			<string>Smart Classroom Manager.app</string>
+			<key>profile</key>
+			<dict>
+				<key>UUID</key>
+				<string>a486521a-1b29-4eaf-9a34-b236934cf400</string>
+				<key>name</key>
+				<string>XC iOS Ad Hoc: com.SmartClassroomManager</string>
+			</dict>
+			<key>team</key>
+			<dict>
+				<key>id</key>
+				<string>D65253D9H7</string>
+				<key>name</key>
+				<string>Smart Classroom Manager Sweden AB</string>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>
