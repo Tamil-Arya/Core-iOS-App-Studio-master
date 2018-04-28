@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		53243C35208B61FB007D0E25 /* TermOfUseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53243C33208B61FB007D0E25 /* TermOfUseViewController.m */; };
+		53D20E7F208C675200D4B0E9 /* TermCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D20E7E208C675200D4B0E9 /* TermCell.m */; };
+		53D20E82208C6B1E00D4B0E9 /* TermModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D20E81208C6B1E00D4B0E9 /* TermModel.m */; };
 		810045EC1C36834400A79D44 /* Placeholding.png in Resources */ = {isa = PBXBuildFile; fileRef = 810045EB1C36834400A79D44 /* Placeholding.png */; };
 		8103BEB91C3792020010F69F /* like-NEWS.png in Resources */ = {isa = PBXBuildFile; fileRef = 8103BEB81C3792020010F69F /* like-NEWS.png */; };
 		8103BEBD1C37F4400010F69F /* NEWS_POST_SCREEN_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8103BEBC1C37F4400010F69F /* NEWS_POST_SCREEN_ViewController.m */; };
@@ -145,7 +148,6 @@
 		81F5A5B11C200B1000838613 /* Post_Curriculum_Tags_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F5A5B01C200B1000838613 /* Post_Curriculum_Tags_ViewController.m */; };
 		81F67E151C4DF4C6008B6EF8 /* Save_Draft_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F67E141C4DF4C6008B6EF8 /* Save_Draft_ViewController.m */; };
 		81F67E191C4E0789008B6EF8 /* Save_Draft_Filter_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F67E181C4E0789008B6EF8 /* Save_Draft_Filter_ViewController.m */; };
-		81FAF9271BE9E02000B77777 /* Login_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FAF9261BE9E02000B77777 /* Login_ViewController.m */; };
 		81FAF93A1BE9E74400B77777 /* opensanslight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 81FAF9371BE9E74400B77777 /* opensanslight.ttf */; };
 		81FAF93B1BE9E74400B77777 /* opensansregular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 81FAF9381BE9E74400B77777 /* opensansregular.ttf */; };
 		81FAF93C1BE9E74400B77777 /* opensanssemibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 81FAF9391BE9E74400B77777 /* opensanssemibold.ttf */; };
@@ -286,12 +288,21 @@
 		8BD83C671D9168FC004D3961 /* replace_sweden.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BD83C611D9168FC004D3961 /* replace_sweden.png */; };
 		8BD83C681D9168FC004D3961 /* replace.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BD83C621D9168FC004D3961 /* replace.png */; };
 		9723C2D7205ECDEC004EB2A2 /* ReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9723C2D6205ECDEC004EB2A2 /* ReachabilityManager.m */; };
+		97293AB320916D19006C9DC6 /* edit-document.png in Resources */ = {isa = PBXBuildFile; fileRef = 97293AB220916D18006C9DC6 /* edit-document.png */; };
 		97B5623E2073EF8B0057B2AD /* LogoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 97B5623D2073EF8B0057B2AD /* LogoutManager.m */; };
+		97EA2428209151CB0038D99F /* Login_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97EA2427209151CB0038D99F /* Login_ViewController.m */; };
+		97EA242A20915F190038D99F /* TermOfUseViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97EA242920915F190038D99F /* TermOfUseViewController.storyboard */; };
 		D2C317C920BAD0F471EFC42D /* libPods-Smart Classroom Manager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5758E43277B1F23F1929A52F /* libPods-Smart Classroom Manager.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		43F0413919F90C784F3DF6A1 /* Pods-Smart Classroom Manager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Smart Classroom Manager.release.xcconfig"; path = "Pods/Target Support Files/Pods-Smart Classroom Manager/Pods-Smart Classroom Manager.release.xcconfig"; sourceTree = "<group>"; };
+		53243C32208B61FB007D0E25 /* TermOfUseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TermOfUseViewController.h; sourceTree = "<group>"; };
+		53243C33208B61FB007D0E25 /* TermOfUseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TermOfUseViewController.m; sourceTree = "<group>"; };
+		53D20E7D208C675200D4B0E9 /* TermCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TermCell.h; sourceTree = "<group>"; };
+		53D20E7E208C675200D4B0E9 /* TermCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TermCell.m; sourceTree = "<group>"; };
+		53D20E80208C6B1E00D4B0E9 /* TermModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TermModel.h; sourceTree = "<group>"; };
+		53D20E81208C6B1E00D4B0E9 /* TermModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TermModel.m; sourceTree = "<group>"; };
 		5758E43277B1F23F1929A52F /* libPods-Smart Classroom Manager.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Smart Classroom Manager.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		810045EB1C36834400A79D44 /* Placeholding.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Placeholding.png; sourceTree = "<group>"; };
 		8103BEB81C3792020010F69F /* like-NEWS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "like-NEWS.png"; sourceTree = "<group>"; };
@@ -502,8 +513,6 @@
 		81F67E141C4DF4C6008B6EF8 /* Save_Draft_ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Save_Draft_ViewController.m; path = Save_Draft/Save_Draft_ViewController.m; sourceTree = "<group>"; };
 		81F67E171C4E0789008B6EF8 /* Save_Draft_Filter_ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Save_Draft_Filter_ViewController.h; path = Save_Draft_Filter/Save_Draft_Filter_ViewController.h; sourceTree = "<group>"; };
 		81F67E181C4E0789008B6EF8 /* Save_Draft_Filter_ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Save_Draft_Filter_ViewController.m; path = Save_Draft_Filter/Save_Draft_Filter_ViewController.m; sourceTree = "<group>"; };
-		81FAF9251BE9E02000B77777 /* Login_ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Login_ViewController.h; path = Login_Page/Login_ViewController.h; sourceTree = "<group>"; };
-		81FAF9261BE9E02000B77777 /* Login_ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Login_ViewController.m; path = Login_Page/Login_ViewController.m; sourceTree = "<group>"; };
 		81FAF9371BE9E74400B77777 /* opensanslight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = opensanslight.ttf; sourceTree = "<group>"; };
 		81FAF9381BE9E74400B77777 /* opensansregular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = opensansregular.ttf; sourceTree = "<group>"; };
 		81FAF9391BE9E74400B77777 /* opensanssemibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = opensanssemibold.ttf; sourceTree = "<group>"; };
@@ -715,8 +724,12 @@
 		8BD83C621D9168FC004D3961 /* replace.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = replace.png; sourceTree = "<group>"; };
 		9723C2D5205ECDEC004EB2A2 /* ReachabilityManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReachabilityManager.h; sourceTree = "<group>"; };
 		9723C2D6205ECDEC004EB2A2 /* ReachabilityManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReachabilityManager.m; sourceTree = "<group>"; };
+		97293AB220916D18006C9DC6 /* edit-document.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "edit-document.png"; sourceTree = "<group>"; };
 		97B5623C2073EF8B0057B2AD /* LogoutManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogoutManager.h; sourceTree = "<group>"; };
 		97B5623D2073EF8B0057B2AD /* LogoutManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogoutManager.m; sourceTree = "<group>"; };
+		97EA2426209151CA0038D99F /* Login_ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Login_ViewController.h; sourceTree = "<group>"; };
+		97EA2427209151CB0038D99F /* Login_ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Login_ViewController.m; sourceTree = "<group>"; };
+		97EA242920915F190038D99F /* TermOfUseViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TermOfUseViewController.storyboard; sourceTree = "<group>"; };
 		CB9E4FF12CE0FE9159E69581 /* Pods-Smart Classroom Manager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Smart Classroom Manager.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Smart Classroom Manager/Pods-Smart Classroom Manager.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -742,6 +755,21 @@
 				43F0413919F90C784F3DF6A1 /* Pods-Smart Classroom Manager.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		53243C31208B61BC007D0E25 /* TermsOfUse */ = {
+			isa = PBXGroup;
+			children = (
+				53243C32208B61FB007D0E25 /* TermOfUseViewController.h */,
+				53243C33208B61FB007D0E25 /* TermOfUseViewController.m */,
+				97EA242920915F190038D99F /* TermOfUseViewController.storyboard */,
+				53D20E7D208C675200D4B0E9 /* TermCell.h */,
+				53D20E7E208C675200D4B0E9 /* TermCell.m */,
+				53D20E80208C6B1E00D4B0E9 /* TermModel.h */,
+				53D20E81208C6B1E00D4B0E9 /* TermModel.m */,
+				97293AB220916D18006C9DC6 /* edit-document.png */,
+			);
+			path = TermsOfUse;
 			sourceTree = "<group>";
 		};
 		8103BEB71C3791E90010F69F /* News Screen IMG */ = {
@@ -1383,6 +1411,7 @@
 		81ED8F1A1BE0F37900F89A2B = {
 			isa = PBXGroup;
 			children = (
+				53243C31208B61BC007D0E25 /* TermsOfUse */,
 				847F3D0F1E446CDD00EECF6F /* Category */,
 				844960F81DF18E9000858DDB /* Smart Classroom Manager.entitlements */,
 				8BD83C691D91690C004D3961 /* childInfo */,
@@ -1576,8 +1605,8 @@
 		81FAF9241BE9DFF500B77777 /* Login_Page */ = {
 			isa = PBXGroup;
 			children = (
-				81FAF9251BE9E02000B77777 /* Login_ViewController.h */,
-				81FAF9261BE9E02000B77777 /* Login_ViewController.m */,
+				97EA2426209151CA0038D99F /* Login_ViewController.h */,
+				97EA2427209151CB0038D99F /* Login_ViewController.m */,
 				84A1B6E51E4DCA9D004E096E /* TwoFactorLoginPopUPView.xib */,
 				8498FA311E51946900ECFF64 /* TwoFactorLoginView.h */,
 				8498FA321E51946900ECFF64 /* TwoFactorLoginView.m */,
@@ -2358,6 +2387,7 @@
 				84A8855A1F5D5B2A00D091F2 /* NewsBlogWebViewController.xib in Resources */,
 				8490FEBD1FB0682E00153EF0 /* LocationWebViewController.xib in Resources */,
 				845015061F71464E0047CC69 /* Evaluation_Matrix_WebViewController.xib in Resources */,
+				97293AB320916D19006C9DC6 /* edit-document.png in Resources */,
 				8177C6CA1C44E2A0009BD4E6 /* plus1.png in Resources */,
 				848E64AE1EA5FCFE0002C04D /* ForumWebViewViewController.xib in Resources */,
 				813F76221C885519009CAAE9 /* brief11.png in Resources */,
@@ -2408,6 +2438,7 @@
 				8155042E1C0CABAF00546A1B /* down_arrow_grey.png in Resources */,
 				8495F8141E3F793500406C3A /* AssignmentCustomView.xib in Resources */,
 				849829701F7AA130003DCCA0 /* Recovery_Notes_WebViewController.xib in Resources */,
+				97EA242A20915F190038D99F /* TermOfUseViewController.storyboard in Resources */,
 				847C33881F614C83008E0B32 /* TodaysNoteViewController.xib in Resources */,
 				844DF4381F73D0AD00CA3448 /* Examination_WebViewController.xib in Resources */,
 				81B1A3721BFDB8C500B47D00 /* edublog.png in Resources */,
@@ -2515,6 +2546,7 @@
 				84B22B851E6714CB005CC662 /* MakeWholeDayAsLeaveViewController.m in Sources */,
 				847D07191F70F7BD00588892 /* TableCell.m in Sources */,
 				81B1A38A1BFE0A7F00B47D00 /* NSString+SBJSON.m in Sources */,
+				53D20E7F208C675200D4B0E9 /* TermCell.m in Sources */,
 				81FD37751C81B37000A3B6EC /* Child_Information.m in Sources */,
 				81F32D681C5217D600493377 /* attendance_overview.m in Sources */,
 				817DE20C1C1709D60071ECF7 /* Right_slider_ViewController.m in Sources */,
@@ -2539,6 +2571,7 @@
 				8484204F1F8F917C002EB686 /* ImageCustomClass.m in Sources */,
 				81ED8F2B1BE0F37900F89A2B /* AppDelegate.m in Sources */,
 				846C827E1DDB26EF00F9EB54 /* MonthViewController.m in Sources */,
+				53243C35208B61FB007D0E25 /* TermOfUseViewController.m in Sources */,
 				84881B1C1E27C6B100651E2B /* NoteIconViewController.m in Sources */,
 				812EDAD51C9AB45800CDE569 /* Single_retriever_note_Notifications.m in Sources */,
 				817DE2071C17088B0071ECF7 /* MFSideMenuShadow.m in Sources */,
@@ -2550,7 +2583,6 @@
 				8498296F1F7AA130003DCCA0 /* Recovery_Notes_WebViewController.m in Sources */,
 				847C338C1F619139008E0B32 /* TodaysNoteTableViewCell.m in Sources */,
 				8105D1191C807BFA008ECAF0 /* Child_Component.m in Sources */,
-				81FAF9271BE9E02000B77777 /* Login_ViewController.m in Sources */,
 				81AA34701C09828A00408142 /* UIImage+FontAwesome.m in Sources */,
 				8177C6D81C457477009BD4E6 /* absent_note.m in Sources */,
 				845015051F71464E0047CC69 /* Evaluation_Matrix_WebViewController.m in Sources */,
@@ -2585,6 +2617,7 @@
 				84AAE53E1E8D29DA000D010E /* EDU_Blog_Home_screen_ViewController.m in Sources */,
 				8495F8121E3F791E00406C3A /* AssignmentCustomView.m in Sources */,
 				81B1A3931BFE0BD000B47D00 /* API.m in Sources */,
+				97EA2428209151CB0038D99F /* Login_ViewController.m in Sources */,
 				8177C6B01C44CFE6009BD4E6 /* retrieval_list_home.m in Sources */,
 				847D47B91E2F63F700927CCA /* AddAbsentNotesViewController.m in Sources */,
 				81F5A5B11C200B1000838613 /* Post_Curriculum_Tags_ViewController.m in Sources */,
@@ -2616,6 +2649,7 @@
 				846C827F1DDB26EF00F9EB54 /* YearViewController.m in Sources */,
 				84412DCC1E891D090057A64B /* ForumViewController.m in Sources */,
 				8155042C1C0C978B00546A1B /* Email_validation.m in Sources */,
+				53D20E82208C6B1E00D4B0E9 /* TermModel.m in Sources */,
 				84C665421E386B1F007C7A08 /* ShowWebviewViewController.m in Sources */,
 				81F32D651C5217CB00493377 /* note_history.m in Sources */,
 				849CD2351FA761DD009C4DC8 /* SmartNotes_WebViewController.m in Sources */,
@@ -2773,7 +2807,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D65253D9H7;
 				INFOPLIST_FILE = ELAR/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.SmartClassroomManager;
 				PRODUCT_NAME = "Smart Classroom Manager";
@@ -2795,7 +2829,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D65253D9H7;
 				INFOPLIST_FILE = ELAR/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.SmartClassroomManager;
 				PRODUCT_NAME = "Smart Classroom Manager";

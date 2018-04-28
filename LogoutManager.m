@@ -8,9 +8,10 @@
 
 #import "LogoutManager.h"
 #import "AppDelegate.h"
+#import "Right_slider_ViewController.h"
 #import <UIKit/UIKit.h>
 
-@interface LogoutManager()<UIAlertViewDelegate>{
+@interface LogoutManager()<UIAlertViewDelegate,Right_slider_ViewControllerDelegate>{
     AppDelegate *appDelegate;
 
 }
@@ -31,9 +32,16 @@
 }
 -(void)forceLogoutForChangePassword{
     
-    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"" message:@"Password has been Updated" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Log out", nil];
-    [alert show];
     
+    Right_slider_ViewController *printClass = [[Right_slider_ViewController alloc]init];
+    [printClass setDelegate:self];
+    
+    
+    if ([printClass CallTheServer_For_verifyForPasswordChanges]) {
+        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Log out Needed" message:@"Password has been updated" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Log out", nil];
+        [alert show];
+        
+    }
     
 //    UIAlertView *alter=[[UIAlertView alloc]initWithTitle:[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"Log out" value:@"" table:nil] message:[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"Password has been updated Please do log out?" value:@"" table:nil] delegate:self cancelButtonTitle:[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"NO" value:@"" table:nil] otherButtonTitles:[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"YES" value:@"" table:nil],nil];
 //    alter.tag=01;

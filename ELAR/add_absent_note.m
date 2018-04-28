@@ -706,7 +706,7 @@
             UIViewController *View = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-3];
             [self.navigationController popToViewController:View animated:YES];
             
-        }else if([[absentnotedict valueForKey:@"message"] isEqualToString:@"Authentication Failed"]){
+        }else if([[absentnotedict valueForKey:@"message"] isEqualToString:[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"Authentication Failed" value:@"" table:nil]]){
             [[LogoutManager sharedManager] forceLogoutForChangePassword];
         }
         

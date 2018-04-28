@@ -11,14 +11,19 @@
 #import "Users_panel_ViewController.h"
 #import "MFSideMenuContainerViewController.h"
 #import "Right_slider_ViewController.h"
+#import "TermOfUseViewController.h"
+#import "ELR_loaders_.h"
 
 
+
+#define TERM_OF_CONDITION_URL @"https://dev.elar.se/mobile_api/get_userterms_formobile"
 #import "AppDelegate.h"
 
-@interface Remember_Me_ViewController ()
+@interface Remember_Me_ViewController ()<NSURLSessionDelegate>
 {
     AppDelegate *appDelegate;
 }
+@property (nonatomic) UIImageView *loader_image;
 
 @end
 
@@ -103,21 +108,109 @@
 
 -(void)aMethod_YES:(UIButton *)sender
 {
+    [self mStartIndicater];
     [[NSUserDefaults standardUserDefaults]setValue:@"YES" forKey:@"Session"];
     [[NSUserDefaults standardUserDefaults]synchronize];
-    appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    [appDelegate LOg_in];
-    
+    [self webServiceCallForTermsOfConditions];
 }
+
 
 -(void)aMethod_NO:(UIButton *)sender
 {
+    [self mStartIndicater];
+
     [[NSUserDefaults standardUserDefaults]setValue:@"NO" forKey:@"Session"];
     [[NSUserDefaults standardUserDefaults]synchronize];
-    appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-     [appDelegate LOg_in];
-
+    [self webServiceCallForTermsOfConditions];
 }
+
+
+
+
+-(void)webServiceCallForTermsOfConditions {
+    
+    
+    NSMutableDictionary *dicdddd=[[NSMutableDictionary alloc]init];
+    [dicdddd setValue:@"H67jdS7wwfh" forKey:@"securityKey"];
+    [dicdddd setValue:[[NSUserDefaults standardUserDefaults]valueForKey:@"user_id"] forKey:@"loginUserID"];
+    [dicdddd setValue:@"ios" forKey:@"platform"];
+    NSError * error;
+    
+    
+    //    NSDictionary *body = @{@"snippet": @{@"topLevelComment":@{@"snippet":@{@"textOriginal":self.commentToPost.text}},@"videoId":self.videoIdPostingOn}};
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:nil];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@",TERM_OF_CONDITION_URL]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval:60.0];
+    
+    [request addValue:@"application/json" forHTTPHeaderField:@ "Content-Type"];
+    [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    
+    [request setHTTPMethod:@"POST"];
+    
+    NSData *postData = [NSJSONSerialization dataWithJSONObject:dicdddd options:0 error:&error];
+    [request setHTTPBody:postData];
+    
+    
+    NSURLSessionDataTask *postDataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        //        NSLog(@"data:%@",data);
+        if (data != nil || data == NULL) {
+            id dictionaryreceived = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+            
+                dispatch_async(dispatch_get_main_queue(), ^{
+                if(dictionaryreceived != nil){
+                    
+                    NSInteger isTrue =[[dictionaryreceived objectForKey:@"status"] integerValue];
+                    [self mStopIndicater];
+                    if (isTrue) {
+                        
+                        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"TermOfUseViewController" bundle:nil];
+                        TermOfUseViewController *myNewVC = (TermOfUseViewController *)[storyboard instantiateViewControllerWithIdentifier:@"TermOfUseViewController"];
+                        [self.navigationController pushViewController:myNewVC animated:YES];                        
+                    }else {
+                        appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+                        [appDelegate LOg_in];
+                    }
+                }
+                
+            });
+        }
+    }];
+    
+    [postDataTask resume];
+    
+}
+
+#pragma mark - -*********************
+#pragma mark Activity Indicater
+#pragma mark - -*********************
+
+-(void)mStartIndicater
+{
+    
+    self.loader_image=[ELR_loaders_ Start_loader:CGRectMake(([[UIScreen mainScreen]bounds].size.width-85)/2,[[UIScreen mainScreen]bounds].size.height/2,85,85)];
+    [self.view addSubview:self.loader_image];
+    
+    [self.loader_image setHidden:NO];
+    
+    
+}
+
+#pragma mark - -*********************
+#pragma mark Stop Indicater
+#pragma mark - -*********************
+
+-(void)mStopIndicater
+{
+    [self.loader_image setHidden:YES];
+    //    [loader_image removeFromSuperview];
+    
+    
+    
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

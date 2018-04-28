@@ -208,7 +208,7 @@
             
            
             
-        }else if([[dict valueForKey:@"message"] isEqualToString:@"Authentication Failed"]){
+        }else if([[dict valueForKey:@"message"] isEqualToString:[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"Authentication Failed" value:@"" table:nil]]){
             [[LogoutManager sharedManager] forceLogoutForChangePassword];
         }
         
@@ -220,9 +220,6 @@
             [alert show];
             
         }
-        
-        
-        
     }
     
     else
@@ -277,7 +274,7 @@
 
             
             
-        }else if([[dictionary valueForKey:@"message"] isEqualToString:@"Authentication Failed"]){
+        }else if([[dictionary valueForKey:@"message"] isEqualToString:[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"Authentication Failed" value:@"" table:nil]]){
             [[LogoutManager sharedManager] forceLogoutForChangePassword];
         }
         
@@ -344,7 +341,7 @@
             // Launch reload for the two index path
             [mtableview reloadRowsAtIndexPaths:indexArray withRowAnimation:UITableViewRowAnimationFade];
             
-        }else if([[dictionary valueForKey:@"message"] isEqualToString:@"Authentication Failed"]){
+        }else if([[dictionary valueForKey:@"message"] isEqualToString:[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"Authentication Failed" value:@"" table:nil]]){
             [[LogoutManager sharedManager] forceLogoutForChangePassword];
         }
         
@@ -1473,7 +1470,7 @@ sectionHeader.backgroundColor=[UIColor colorWithRed:235.0f/255.0f green:234.0f/2
                    
             [mtableview reloadData];
             
-        }else if([[dict valueForKey:@"message"] isEqualToString:@"Authentication Failed"]){
+        }else if([[dict valueForKey:@"message"] isEqualToString:[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"Authentication Failed" value:@"" table:nil]]){
             [[LogoutManager sharedManager] forceLogoutForChangePassword];
         }
         

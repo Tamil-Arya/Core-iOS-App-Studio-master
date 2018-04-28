@@ -24,5 +24,6 @@
 
 +(NSString *)API_link_url_NEWS_Video;
 +(NSString *)API_link_url_NEWS_Thumnail;
++(NSString *)API_link_TermsOfUse;
 
 @end

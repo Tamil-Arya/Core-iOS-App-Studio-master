@@ -41,7 +41,10 @@
 
 +(NSString *)API_link_url_subDomain
 {
-    NSString *app_main_url=[NSString stringWithFormat:@"%@%@",[[NSUserDefaults standardUserDefaults]valueForKey:@"sub_domain"],@"lms_api/"];
+    
+    NSString *mainUrl = [[NSUserDefaults standardUserDefaults] valueForKey:@"sub_domain"] == nil ? @"https://dev.elar.se/": [[NSUserDefaults standardUserDefaults] valueForKey:@"sub_domain"];
+    
+    NSString *app_main_url=[NSString stringWithFormat:@"%@%@",mainUrl,@"lms_api/"];
     
     return app_main_url;
 }
@@ -118,6 +121,14 @@
     
     return app_main_url;
     
+    
+}
+
+
++(NSString *)API_link_TermsOfUse {
+    NSString *termURL = [[NSUserDefaults standardUserDefaults] valueForKey:@"sub_domain"] == nil ? @"https://dev.elar.se/": [[NSUserDefaults standardUserDefaults] valueForKey:@"sub_domain"];
+    NSString *app_term_url=[NSString stringWithFormat:@"%@%@",termURL,@"mobile_api/get_userterms_formobile"];
+    return app_term_url;
     
 }
 

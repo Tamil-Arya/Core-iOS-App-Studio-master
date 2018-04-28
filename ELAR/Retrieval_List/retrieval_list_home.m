@@ -663,7 +663,7 @@ bool isShown = false;
             
             
             
-        }else if([[GroupsData valueForKey:@"message"] isEqualToString:@"Authentication Failed"]){
+        }else if([[GroupsData valueForKey:@"message"] isEqualToString:[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"Authentication Failed" value:@"" table:nil]]){
             [[LogoutManager sharedManager] forceLogoutForChangePassword];
         }
         
@@ -734,7 +734,7 @@ bool isShown = false;
             
             [tableView_options reloadData];
 
-        }else if([[GroupsData valueForKey:@"message"] isEqualToString:@"Authentication Failed"]){
+        }else if([[GroupsData valueForKey:@"message"] isEqualToString:[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"Authentication Failed" value:@"" table:nil]]){
             [[LogoutManager sharedManager] forceLogoutForChangePassword];
         }
         
@@ -1651,7 +1651,7 @@ bool isShown = false;
             [tableView_options reloadData];
 
             
-        }else if([[students_list valueForKey:@"message"] isEqualToString:@"Authentication Failed"]){
+        }else if([[students_list valueForKey:@"message"] isEqualToString:[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"Authentication Failed" value:@"" table:nil]]){
             [[LogoutManager sharedManager] forceLogoutForChangePassword];
         }
         

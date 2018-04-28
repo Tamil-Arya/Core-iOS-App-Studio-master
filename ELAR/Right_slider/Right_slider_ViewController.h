@@ -9,8 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "MFSideMenu.h"
 #import "NSString+HTML.h"
+@protocol Right_slider_ViewControllerDelegate
+@optional
+-(BOOL)CallTheServer_For_verifyForPasswordChanges;
+@end
 @interface Right_slider_ViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
 {
+    id delegate;
+    
     UITableView *tableViewm;
     UILabel *school_LB;
     UILabel *User_type_LB;
@@ -63,5 +69,6 @@
     NSString *Token_value;
     
 }
-
+- (void) setDelegate:(id)newDelegate;
+-(BOOL)CallTheServer_For_verifyForPasswordChanges;
 @end

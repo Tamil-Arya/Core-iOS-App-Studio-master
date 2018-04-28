@@ -200,7 +200,7 @@
 -(void)LOg_in
 {
     
-    NSArray *subViewArray = [self.window subviews];
+    NSArray *subViewArray = [self.window     subviews];
     for (id obj in subViewArray)
     {
         [obj removeFromSuperview];
@@ -208,7 +208,7 @@
     }
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
+    self.window.backgroundColor = [UIColor whiteColor];
     
     NSLog(@"%@",[[[NSUserDefaults standardUserDefaults]valueForKey:@"user_type"]capitalizedString]);
     
@@ -259,6 +259,9 @@
     
     
     
+    //NSString *app_main_url=[[NSUserDefaults standardUserDefaults]valueForKey:@"sub_domain"];
+    
+    
        NSString *Default_subdomainngugae=[[NSUserDefaults standardUserDefaults]valueForKey:@"Default_subdomain"];
 
     NSString *user_type_app=[[NSUserDefaults standardUserDefaults]valueForKey:@"user_type_app"];
@@ -283,6 +286,9 @@
     [[NSUserDefaults standardUserDefaults]setObject:Default_subdomain_name forKey:@"Default_subdomain_name"];
     [[NSUserDefaults standardUserDefaults]synchronize];
 
+
+
+    
     
     [[NSUserDefaults standardUserDefaults]setObject:Default_subdomainngugae forKey:@"Default_subdomain"];
     [[NSUserDefaults standardUserDefaults]synchronize];

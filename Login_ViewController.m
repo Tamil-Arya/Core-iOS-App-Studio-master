@@ -22,6 +22,7 @@
 #import "Reachability.h"
 #import "AppDelegate.h"
 #import "LogoutManager.h"
+#import "TermOfUseViewController.h"
 
 
 @interface Login_ViewController ()
@@ -169,7 +170,7 @@
     
    
     
-       Passwprd_TXT.autocorrectionType = UITextAutocorrectionTypeNo;
+    Passwprd_TXT.autocorrectionType = UITextAutocorrectionTypeNo;
     Passwprd_TXT.keyboardType = UIReturnKeyDefault;
     Passwprd_TXT.clearButtonMode = UITextFieldViewModeWhileEditing;
     Passwprd_TXT.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
@@ -1000,8 +1001,6 @@ customerListServicecount = 0;
         
         //------------ Call API for signup With Post Method --------------//
         
-        
-        
         NSString *responseString = [API makeCallPostData_ALL:[NSString stringWithFormat:@"securityKey=%@&email=%@&language=%@",@"H67jdS7wwfh",mEmail_id.text,[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"]]:[NSString stringWithFormat:@"%@users/forgot_password",[Utilities API_link_url_subDomain]]];
         
       
@@ -1017,7 +1016,7 @@ customerListServicecount = 0;
             [alert show];
 
             
-        }else if([[dict_forgot valueForKey:@"message"] isEqualToString:@"Authentication Failed"]){
+        }else if([[dict_forgot valueForKey:@"message"] isEqualToString:[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"Authentication Failed" value:@"" table:nil]]){
             [[LogoutManager sharedManager] forceLogoutForChangePassword];
         }
         
@@ -1358,7 +1357,7 @@ customerListServicecount = 0;
 
             }
             
-        }else if([[dict_Login valueForKey:@"message"] isEqualToString:@"Authentication Failed"]){
+        }else if([[dict valueForKey:@"message"] isEqualToString:[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"Authentication Failed" value:@"" table:nil]]){
             [[LogoutManager sharedManager] forceLogoutForChangePassword];
         }
         
@@ -1570,10 +1569,8 @@ customerListServicecount = 0;
                 
 //                Schools_TXT.text=[[NSUserDefaults standardUserDefaults]valueForKey:@"Default_subdomain_name"];
                 
-            }
-            
-            
-        }else if([[dict_School valueForKey:@"message"] isEqualToString:@"Authentication Failed"]){
+            }            
+        }else if([[dict_School valueForKey:@"message"] isEqualToString:[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"Authentication Failed" value:@"" table:nil]]){
             [[LogoutManager sharedManager] forceLogoutForChangePassword];
         }
         else

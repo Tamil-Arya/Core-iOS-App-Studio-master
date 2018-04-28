@@ -62,7 +62,8 @@
 #import "LocationWebViewController.h"
 #import "ImageCustomClass.h"
 #import "LogoutManager.h"
-@interface Users_panel_ViewController ()
+#import "Right_slider_ViewController.h"
+@interface Users_panel_ViewController ()<Right_slider_ViewControllerDelegate>
 
 
 @end
@@ -280,7 +281,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     
     
     componet=[[NSMutableDictionary alloc]init];
@@ -530,6 +530,8 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
+    [[LogoutManager sharedManager]forceLogoutForChangePassword];
+
 
        [self Navigation_bar];
     self.navigationItem.hidesBackButton = YES;
@@ -1017,7 +1019,7 @@ absent_note_IMG.frame=CGRectMake(CalenderSelectionBox.frame.size.width-30,5 , 20
                        [_collectionView reloadData];
             
             
-        }else if([[mutableRetrievedDictionary valueForKey:@"message"] isEqualToString:@"Authentication Failed"]){
+        }else if([[mutableRetrievedDictionary valueForKey:@"message"] isEqualToString:[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"Authentication Failed" value:@"" table:nil]]){
             [[LogoutManager sharedManager] forceLogoutForChangePassword];
         }
         
@@ -1728,6 +1730,8 @@ absent_note_IMG.frame=CGRectMake(CalenderSelectionBox.frame.size.width-30,5 , 20
                 }
                 
                 
+            }else if([[UpdateRetrievedDictionary valueForKey:@"message"] isEqualToString:[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"Authentication Failed" value:@"" table:nil]]){
+                [[LogoutManager sharedManager] forceLogoutForChangePassword];
             }
             else
             {
@@ -1853,7 +1857,7 @@ absent_note_IMG.frame=CGRectMake(CalenderSelectionBox.frame.size.width-30,5 , 20
         
         
         
-        }else if([[UpdateRetrievedDictionary valueForKey:@"message"] isEqualToString:@"Authentication Failed"]){
+        }else if([[UpdateRetrievedDictionary valueForKey:@"message"] isEqualToString:[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"Authentication Failed" value:@"" table:nil]]){
             [[LogoutManager sharedManager] forceLogoutForChangePassword];
         }
         
@@ -2306,17 +2310,14 @@ absent_note_IMG.frame=CGRectMake(CalenderSelectionBox.frame.size.width-30,5 , 20
     {
         
         Child_Information *obj_EDU_Blog_Home_screen_ViewController=[[Child_Information alloc]init];
+        obj_EDU_Blog_Home_screen_ViewController.indexOfChildSelected = self.indexOfChildSelected;
         [self.navigationController pushViewController:obj_EDU_Blog_Home_screen_ViewController animated:YES];
     }
-
-    
     
     if (indexPath.row==1) {
       
-        
     }
 //    }
-    
 }
 
 - (UIEdgeInsets)collectionView:

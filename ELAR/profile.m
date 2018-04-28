@@ -836,7 +836,7 @@
             
             
             
-        }else if([[Dropoff_Update valueForKey:@"message"] isEqualToString:@"Authentication Failed"]){
+        }else if([[Dropoff_Update valueForKey:@"message"] isEqualToString:[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"Authentication Failed" value:@"" table:nil]]){
             [[LogoutManager sharedManager] forceLogoutForChangePassword];
         }
         
@@ -1074,7 +1074,7 @@
             
             
             
-        }else if([[user_profile_update valueForKey:@"message"] isEqualToString:@"Authentication Failed"]){
+        }else if([[user_profile_update valueForKey:@"message"] isEqualToString:[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"Authentication Failed" value:@"" table:nil]]){
             [[LogoutManager sharedManager] forceLogoutForChangePassword];
         }
         
@@ -1397,7 +1397,7 @@
              [tableView_retrievalhistory reloadData];
              [tableView_absencedays reloadData];
 
-        }else if([[userprofile valueForKey:@"message"] isEqualToString:@"Authentication Failed"]){
+        }else if([[userprofile valueForKey:@"message"] isEqualToString:[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"Authentication Failed" value:@"" table:nil]]){
             [[LogoutManager sharedManager] forceLogoutForChangePassword];
         }
         

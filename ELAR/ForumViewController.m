@@ -271,7 +271,6 @@
                 [[NSUserDefaults standardUserDefaults]synchronize];
                 
                 
-                
                 [[NSNotificationCenter defaultCenter]
                  postNotificationName:@"REfress_User_panel"
                  object:nil];
@@ -281,7 +280,7 @@
             
             [_forumListTableView reloadData];
             
-        }else if([[dict valueForKey:@"message"] isEqualToString:@"Authentication Failed"]){
+        }else if([[dict valueForKey:@"message"] isEqualToString:[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"Authentication Failed" value:@"" table:nil]]){
             [[LogoutManager sharedManager] forceLogoutForChangePassword];
         }
         

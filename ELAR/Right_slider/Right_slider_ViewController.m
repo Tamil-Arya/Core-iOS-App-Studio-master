@@ -42,7 +42,9 @@
 
 #pragma mark -
 #pragma mark - UIBarButtonItems
-
+- (void) setDelegate:(id)newDelegate{
+    delegate = newDelegate;
+}
 - (void)setupMenuBarButtonItems {
     // self.navigationItem.rightBarButtonItem = [self rightMenuBarButtonItem];
     
@@ -362,7 +364,34 @@
 #pragma mark - -*********************
 #pragma mark CallTheServer_Login_API Method
 #pragma mark - -*********************
-
+-(BOOL)CallTheServer_For_verifyForPasswordChanges{
+    
+    
+    if ([[[NSUserDefaults standardUserDefaults]valueForKey:@"user_type"]isEqualToString:@"parent"] || [[[NSUserDefaults standardUserDefaults]valueForKey:@"user_type"]isEqualToString:@"förälder"]) {
+        
+        Token_value=[[NSUserDefaults standardUserDefaults]valueForKey:@"parent_authentication_token"];        }
+    else
+    {
+        Token_value=[[NSUserDefaults standardUserDefaults]valueForKey:@"authentication_token"];
+    }
+    
+    
+    BOOL isChanged = NO;
+    if ([API connectedToInternet]==YES) {
+        
+        //------------ Call API for signup With Post Method --------------//
+        
+        NSString *responseString = [API makeCallPostData_ALL:[NSString stringWithFormat:@"securityKey=%@&authentication_token=%@&user_table_id=%@&device_token_app=%@&language=%@",@"H67jdS7wwfh",Token_value,[[NSUserDefaults standardUserDefaults]valueForKey:@"user_table_id"],[[NSUserDefaults standardUserDefaults]valueForKey:@"device_token_app"],[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"]]:[NSString stringWithFormat:@"%@users/logout",[Utilities API_link_url_subDomain]]];
+        
+        NSDictionary *responseDict = [responseString JSONValue];
+        dict = [[NSMutableDictionary alloc ]  initWithDictionary:responseDict];
+        
+        if([[dict valueForKey:@"message"] isEqualToString:[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"Authentication Failed" value:@"" table:nil]]){
+            isChanged =YES;
+        }
+    }
+    return isChanged;
+}
 
 -(void)CallTheServer_Refess
 {
@@ -475,7 +504,7 @@
 
             
             
-        }else if([[Refress valueForKey:@"message"] isEqualToString:@"Authentication Failed"]){
+        }else if([[dict valueForKey:@"message"] isEqualToString:[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"Authentication Failed" value:@"" table:nil]]){
             [[LogoutManager sharedManager] forceLogoutForChangePassword];
         }
         
@@ -516,8 +545,7 @@
     [super viewDidLoad];
     
     
-    
-   
+
     
     if ([[[NSUserDefaults standardUserDefaults]valueForKey:@"user_type"]isEqualToString:@"parent"] || [[[NSUserDefaults standardUserDefaults]valueForKey:@"user_type"]isEqualToString:@"förälder"]) {
         
@@ -614,26 +642,16 @@
         dict = [[NSMutableDictionary alloc ]  initWithDictionary:responseDict];
         
         
-        if ([[dict valueForKey:@"status"] isEqualToString:@"true"]) {
+       // if ([[dict valueForKey:@"status"] isEqualToString:@"true"]) {
             
             appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
             [appDelegate LOg_Out];
             
-        }else if([[dict valueForKey:@"message"] isEqualToString:@"Authentication Failed"]){
-            [[LogoutManager sharedManager] forceLogoutForChangePassword];
+        //}else if([[dict valueForKey:@"message"] isEqualToString:@"Authentication Failed"]){
+            //[[LogoutManager sharedManager] forceLogoutForChangePassword];
         }
-        
-        
         else
         {
-
-            alert = [[UIAlertView alloc] initWithTitle:[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"An error has occurred" value:@"" table:nil] message:[dict valueForKey:@"message"] delegate:self cancelButtonTitle:nil otherButtonTitles:[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"Ok" value:@"" table:nil], nil];
-            [alert show];
-
-        }
-    }
-    else
-    {
         alert = [[UIAlertView alloc] initWithTitle:[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"Error" value:@"" table:nil] message:[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"Not connected to the internet" value:@"" table:nil] delegate:self cancelButtonTitle:nil otherButtonTitles:[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"Ok" value:@"" table:nil], nil];
         [alert show];
     }
@@ -992,14 +1010,10 @@
                 [[NSUserDefaults standardUserDefaults]synchronize];
             }
 
-            
-
-
-            
             appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
             [appDelegate LOg_in];
             
-        }else if([[dict valueForKey:@"message"] isEqualToString:@"Authentication Failed"]){
+        }else if([[dict valueForKey:@"message"] isEqualToString:[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"Authentication Failed" value:@"" table:nil]]){
             [[LogoutManager sharedManager] forceLogoutForChangePassword];
         }
         

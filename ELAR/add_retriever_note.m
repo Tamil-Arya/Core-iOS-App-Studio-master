@@ -852,7 +852,7 @@ self.view.backgroundColor = [UIColor whiteColor];
             [self.navigationController popViewControllerAnimated:YES];
             
             
-        }else if([[retrievernotedict valueForKey:@"message"] isEqualToString:@"Authentication Failed"]){
+        }else if([[retrievernotedict valueForKey:@"message"] isEqualToString:[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"Authentication Failed" value:@"" table:nil]]){
             [[LogoutManager sharedManager] forceLogoutForChangePassword];
         }
         
