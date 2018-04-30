@@ -211,9 +211,10 @@
         
         termCell= (TermCell *)[theTableView dequeueReusableCellWithIdentifier: @"Cell1"];
         
-        termCell.titleForCheckBox.text = [self.array objectAtIndex:indexPath.row];
+        termCell.titleForCheckBox.text = [self convertEntiesInString:[self.array objectAtIndex:indexPath.row]];;
         
-        if ([_selected_array containsObject:indexPath]){
+        
+        if ([_selected_array containsObject:@(indexPath.row)]){
              [termCell.checkButton setBackgroundImage:[UIImage imageNamed:@"click.png"] forState:UIControlStateNormal];
             [termCell.checkButton setSelected:YES];
             
@@ -223,16 +224,11 @@
             [termCell.checkButton setSelected:NO];
 
         }
-        
-        
-        
-        
-        
     }
     else{
         
         termCell= (TermCell *)[theTableView dequeueReusableCellWithIdentifier: @"Cell"];
-        termCell.textLabel.text = [self.array objectAtIndex:indexPath.section];
+        termCell.textLabel.text = [self convertEntiesInString:[self.array objectAtIndex:indexPath.section]];
         termCell.detailTextLabel.text = [self convertEntiesInString:[self.descriptionArray objectAtIndex:indexPath.section]];
         
         termCell.layer.cornerRadius = 10.0f;
@@ -260,17 +256,16 @@
     }
     return 0.0;
 }
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     TermCell *cellAtindexPath = [tableView cellForRowAtIndexPath:indexPath];
     if ([[cellAtindexPath.checkButton backgroundImageForState:UIControlStateNormal] isEqual:[UIImage imageNamed:@"click.png"]]){
         [cellAtindexPath.checkButton setBackgroundImage:[UIImage imageNamed:@"nonclick20*20.png"] forState:UIControlStateNormal];
-        [_selected_array removeObject:indexPath];
+        [_selected_array removeObject:@(indexPath.row)];
 
     }else {
         [cellAtindexPath.checkButton setBackgroundImage:[UIImage imageNamed:@"click.png"] forState:UIControlStateNormal];
 
-        [_selected_array addObject:indexPath];
+        [_selected_array addObject:@(indexPath.row)];
     }
     
     
@@ -312,18 +307,17 @@
     return nil;
 }
 
-
-
-
-
 - (IBAction)accept:(UIButton *)sender {
     
     [self mStartIndicater];
 
     self.isDecline = NO;
-        NSMutableString *selected_string = [[NSMutableString alloc] init];
-    for (int i= 0; i<_selected_array.count;i++) {
-        [selected_string appendString:[NSString stringWithFormat:@"%@", [_array objectAtIndex:[[_selected_array objectAtIndex:i]indexPath].row]]];
+    NSMutableString *selected_string = [[NSMutableString alloc] init];
+    for (int i= 0; i<_selected_array.count; i++) {
+        
+        NSInteger path = [[_selected_array objectAtIndex:i] integerValue] ;
+        [selected_string appendString:[NSString stringWithFormat:@"%@", [_array objectAtIndex:path]]];
+
         if (_selected_array.count-1 == i) {
         }else{
             [selected_string appendString:@","];
@@ -350,7 +344,10 @@
 
     NSMutableString *selected_string = [[NSMutableString alloc] init];
     for (int i= 0; i<_selected_array.count; i++) {
-        [selected_string appendString:[NSString stringWithFormat:@"%@", [_array objectAtIndex:[[_selected_array objectAtIndex:i]indexPath].row]]];
+        
+        NSInteger path = [[_selected_array objectAtIndex:i] integerValue] ;
+        
+        [selected_string appendString:[NSString stringWithFormat:@"%@", [_array objectAtIndex:path]]];
         if (_selected_array.count-1 == i) {
         }else{
             [selected_string appendString:@","];
@@ -367,7 +364,10 @@
     [self webserviceFordate:dicdddd withURL:@"https://dev.elar.se/mobile_api/save_term_details"];
    
     
+    
 }
+
+
 - (IBAction)logout:(UIButton *)sender {
     appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [appDelegate LOg_Out];
@@ -378,9 +378,15 @@
 - (NSString*)convertEntiesInString:(NSString*)htmlString {
     NSData* stringData = [htmlString dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary* options = @{NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType};
+ 
+    
     NSAttributedString* decodedAttributedString = [[NSAttributedString alloc] initWithData:stringData options:options documentAttributes:NULL error:NULL];
     NSString* decodedString = [decodedAttributedString string];
-    return decodedString;
+    
+    NSData *temp = [decodedString dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+    NSString *dst = [[NSString alloc] initWithData:temp encoding:NSASCIIStringEncoding];
+    
+    return dst;
 }
 
 

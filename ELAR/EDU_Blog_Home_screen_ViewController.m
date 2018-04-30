@@ -85,7 +85,7 @@
     
     
     
- // [self rightSideMenuButtonPressed];
+    // [self rightSideMenuButtonPressed];
     
     
 }
@@ -96,16 +96,16 @@
 
 - (void) Refress_Post:(NSNotification *) notification
 {
-     [self mStartIndicater];
+    [self mStartIndicater];
     
     [self performSelector:@selector(CallTheServer_EDU_POST_API) withObject:nil afterDelay:0.5];
-
+    
 }
 
 
 - (void) Filter_Post:(NSNotification *) notification
 {
-     [self mStartIndicater];
+    [self mStartIndicater];
     
     [self performSelector:@selector(CallTheServer_Filter_API:) withObject:notification.object afterDelay:0.5];
     
@@ -156,14 +156,14 @@
     {
         alert = [[UIAlertView alloc] initWithTitle:[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"Error" value:@"" table:nil] message:[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"Not connected to the internet" value:@"" table:nil] delegate:self cancelButtonTitle:nil otherButtonTitles:[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"Ok" value:@"" table:nil], nil];
         [alert show];
-
+        
     }
     
     
     [refreshControl endRefreshing];
     
-   [self mStopIndicater];
-
+    [self mStopIndicater];
+    
     
 }
 
@@ -192,7 +192,7 @@
     [user_pic sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",[Utilities API_link_url_IMG],[[NSUserDefaults standardUserDefaults]valueForKey:@"USR_image"]]]
                 placeholderImage:[UIImage imageNamed:@"profile9.png"]];
     
- //   user_pic.frame=CGRectMake(50, 0, 30, 30);
+    //   user_pic.frame=CGRectMake(50, 0, 30, 30);
     CGSize size = CGSizeMake(30, 30);
     
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 11){
@@ -204,7 +204,7 @@
         user_pic.frame=CGRectMake(0, 0, size.width, size.height);
         
     }
-
+    
     user_pic.layer.cornerRadius=size.width*0.5;
     user_pic.layer.borderColor=[UIColor clearColor].CGColor;
     user_pic.layer.borderWidth=1;
@@ -221,18 +221,18 @@
                                                  action:@selector(Action_slider)];
     
     [user_pic addGestureRecognizer:tap_action_slider];
-
+    
     
     self.navigationController.navigationBar.titleTextAttributes = @{
                                                                     NSFontAttributeName:[Font_Face_Controller opensanssemibold:15],
                                                                     NSForegroundColorAttributeName: [UIColor blackColor]
                                                                     };
     self.navigationItem.title = [[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"Edu Blog" value:@"" table:nil];
-
     
-      self.navigationItem.hidesBackButton = YES;
+    
+    self.navigationItem.hidesBackButton = YES;
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-//    UIImage *butImage = [[UIImage imageNamed:@"back-2"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
+    //    UIImage *butImage = [[UIImage imageNamed:@"back-2"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
     CGSize size1;
     
     if ([[[UIDevice currentDevice] systemVersion] floatValue]>=11){
@@ -242,7 +242,7 @@
     }
     
     UIImage *butImage = [ImageCustomClass image:[UIImage imageNamed:@"back-2"] resize:size1];
-
+    
     [button setBackgroundImage:butImage forState:UIControlStateNormal];
     [button addTarget:self action:@selector(gotoBack) forControlEvents:UIControlEventTouchUpInside];
     button.frame = CGRectMake(0, 0, 20, 20);
@@ -253,11 +253,11 @@
     self.navigationItem.leftBarButtonItem = backButton;
     
     
-        [[self navigationItem] setBackBarButtonItem:backButton];
+    [[self navigationItem] setBackBarButtonItem:backButton];
     
     
     
-
+    
 }
 
 -(void)gotoBack
@@ -273,7 +273,7 @@
     Left_Publish_LB.text=[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"Create" value:@"" table:nil];
     Right_Publish_LB.text=[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"Post" value:@"" table:nil];
     Filter_LB.text=[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"Filter" value:@"" table:nil];
-     [self mStartIndicater];
+    [self mStartIndicater];
     
     [self performSelector:@selector(CallTheServer_EDU_POST_API) withObject:nil afterDelay:0.5];
     [self Navigation_bar];
@@ -295,7 +295,7 @@
                                              selector:@selector(REfress_EDU_Home:)
                                                  name:@"REfress_EDU_Home"
                                                object:nil];
-   
+    
     
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -311,14 +311,14 @@
     
     
     
-
+    
     
     
     msearch_STR=@"";
     
     
     
-     //////////////////// Search Bar \\\\\\\\\\\\\\
+    //////////////////// Search Bar \\\\\\\\\\\\\\
     
     self.view.backgroundColor=[UIColor whiteColor];
     
@@ -331,22 +331,22 @@
     Top_Main_Show_color.backgroundColor=[UIColor clearColor];
     Top_Main_Show_color.userInteractionEnabled=YES;
     Top_Main_Show_color.frame=CGRectMake(0,0, self.view.frame.size.width, 144);
-  //  [self.view addSubview:Top_Main_Show_color];
-
+    //  [self.view addSubview:Top_Main_Show_color];
     
     
-   search = [[UISearchBar alloc] init];
-      search.frame = CGRectMake(0,0, self.view.frame.size.width,50);
+    
+    search = [[UISearchBar alloc] init];
+    search.frame = CGRectMake(0,0, self.view.frame.size.width,50);
     search.placeholder=[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"Search" value:@"" table:nil];
     search.delegate = self;
     search.layer.borderColor=[UIColor clearColor].CGColor;
     
-   search.barTintColor = [UIColor colorWithRed:235.0f/255.0f green:235.0f/255.0f blue:235.0f/255.0f alpha:1.0]; // Are these the same effect?
+    search.barTintColor = [UIColor colorWithRed:235.0f/255.0f green:235.0f/255.0f blue:235.0f/255.0f alpha:1.0]; // Are these the same effect?
     [search setTintColor:[UIColor colorWithRed:235.0f/255.0f green:235.0f/255.0f blue:235.0f/255.0f alpha:1.0]];
     [Top_Main_Show_color addSubview:search];
     
     //////////////////// dismissKeyboard\\\\\\\\\\\\\\
-
+    
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
@@ -363,14 +363,14 @@
     Top_Main_background_color.userInteractionEnabled=YES;
     Top_Main_background_color.frame=CGRectMake(0, search.frame.origin.y+search.frame.size.height, self.view.frame.size.width, 100);
     [Top_Main_Show_color addSubview:Top_Main_background_color];
-
     
     
     
     
-
     
-     //////////////////// TopView Left background Lable\\\\\\\\\\\\\\
+    
+    
+    //////////////////// TopView Left background Lable\\\\\\\\\\\\\\
     
     Top_Left_background_color=[[UIView alloc]init];
     Top_Left_background_color.userInteractionEnabled=YES;
@@ -380,14 +380,14 @@
     [Top_Main_background_color addSubview:Top_Left_background_color];
     
     
-   
+    
     UITapGestureRecognizer *Top_Left_background_action = [[UITapGestureRecognizer alloc]
-                                                           initWithTarget:self
-                                                           action:@selector(Top_Left_background_action)];
+                                                          initWithTarget:self
+                                                          action:@selector(Top_Left_background_action)];
     
     [Top_Left_background_color addGestureRecognizer:Top_Left_background_action];
-
-   
+    
+    
     
     ////////////////////  Left_Publish  Lable\\\\\\\\\\\\\\
     
@@ -420,12 +420,12 @@
     Top_right_background_color.userInteractionEnabled=YES;
     Top_right_background_color.frame=CGRectMake(Top_Main_background_color.frame.size.width/2, 0, Top_Main_background_color.frame.size.width/2, 55);
     [Top_Main_background_color addSubview:Top_right_background_color];
-
-
     
     
-   
-
+    
+    
+    
+    
     
     
     //////////////////  Right Image  Lable\\\\\\\\\\\\\\
@@ -438,8 +438,8 @@
     Right_Image.frame=CGRectMake(30,(Top_right_background_color.frame.size.height-32)/2,32, 32);
     [Top_right_background_color addSubview:Right_Image];
     
-
-     ////////////////////  Right Publish  Lable\\\\\\\\\\\\\\
+    
+    ////////////////////  Right Publish  Lable\\\\\\\\\\\\\\
     
     
     Right_Publish_LB=[[UILabel alloc]init];
@@ -452,7 +452,7 @@
     [Top_right_background_color addSubview:Right_Publish_LB];
     
     
-   
+    
     
     
     
@@ -471,8 +471,8 @@
     
     
     UITapGestureRecognizer *Filter_action = [[UITapGestureRecognizer alloc]
-                                                      initWithTarget:self
-                                                      action:@selector(Filter_action)];
+                                             initWithTarget:self
+                                             action:@selector(Filter_action)];
     
     [Filter_LB addGestureRecognizer:Filter_action];
     
@@ -499,18 +499,18 @@
     else
     {
         btnMenuss.frame=CGRectMake(self.view.frame.size.width-40, 0, 30, 30);
-         Top_Main_Show_color.frame=CGRectMake(0,0, self.view.frame.size.width, 85);
+        Top_Main_Show_color.frame=CGRectMake(0,0, self.view.frame.size.width, 85);
         [Top_right_background_color removeFromSuperview];
         [Top_Left_background_color removeFromSuperview];
         Top_Main_background_color.frame=CGRectMake(0, search.frame.origin.y+search.frame.size.height, self.view.frame.size.width, 30);
-         Filter_LB.frame=CGRectMake(10,0,self.view.frame.size.width-20, 30);
+        Filter_LB.frame=CGRectMake(10,0,self.view.frame.size.width-20, 30);
         Filter_IMG.frame=CGRectMake((Filter_LB.frame.size.width-7)-10,(Filter_LB.frame.size.height-4)/2,7, 4);
     }
     //////////////////  Table view  Lable\\\\\\\\\\\\\\
     // init table view
     tableViewm = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) style:UITableViewStylePlain];
-   
-      // must set delegate & dataSource, otherwise the the table will be empty and not responsive
+    
+    // must set delegate & dataSource, otherwise the the table will be empty and not responsive
     tableViewm.delegate = self;
     tableViewm.dataSource = self;
     
@@ -526,13 +526,13 @@
         
         
         tableViewm.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
-
+        
         
         
     }
     else
     {
-         tableViewm.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+        tableViewm.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
     }
     
     
@@ -540,12 +540,12 @@
     [refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
     [tableViewm addSubview:refreshControl];
     
-     [self mStartIndicater];
+    [self mStartIndicater];
     
     [self performSelector:@selector(CallTheServer_EDU_POST_API) withObject:nil afterDelay:0.5];
-
     
-//
+    
+    //
     
 }
 
@@ -554,14 +554,14 @@
 {
     
     
-     msearch_STR=@"";
+    msearch_STR=@"";
     
-   
+    
     
     [self performSelector:@selector(CallTheServer_EDU_POST_API) withObject:nil afterDelay:0.5];
-
     
-   
+    
+    
 }
 
 -(void)Creat_Post
@@ -578,12 +578,12 @@
 {
     
     [super viewWillAppear:YES];
-
-
+    
+    
     
     // [self.navigationItem setHidesBackButton:YES];
     [self Navigation_bar];
-
+    
 }
 
 
@@ -633,9 +633,9 @@
         
         NSLog(@"Request %@",[NSString stringWithFormat:@"securityKey=%@&authentication_token=%@&parent_id=%@&device_token_app=%@&description_value=%@&language=%@",@"H67jdS7wwfh",[[NSUserDefaults standardUserDefaults]valueForKey:@"authentication_token"],[[NSUserDefaults standardUserDefaults]valueForKey:@"parent_id"],[[NSUserDefaults standardUserDefaults]valueForKey:@"device_token_app"],msearch_STR,[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"]]);
         
-               NSString *responseString = [API makeCallPostData_ALL:[NSString stringWithFormat:@"securityKey=%@&authentication_token=%@&parent_id=%@&device_token_app=%@&description_value=%@&language=%@",@"H67jdS7wwfh",[[NSUserDefaults standardUserDefaults]valueForKey:@"authentication_token"],[[NSUserDefaults standardUserDefaults]valueForKey:@"parent_id"],[[NSUserDefaults standardUserDefaults]valueForKey:@"device_token_app"],msearch_STR,[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"]]:[NSString stringWithFormat:@"%@picture_diary/posts",[Utilities API_link_url_subDomain]]];
+        NSString *responseString = [API makeCallPostData_ALL:[NSString stringWithFormat:@"securityKey=%@&authentication_token=%@&parent_id=%@&device_token_app=%@&description_value=%@&language=%@",@"H67jdS7wwfh",[[NSUserDefaults standardUserDefaults]valueForKey:@"authentication_token"],[[NSUserDefaults standardUserDefaults]valueForKey:@"parent_id"],[[NSUserDefaults standardUserDefaults]valueForKey:@"device_token_app"],msearch_STR,[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"]]:[NSString stringWithFormat:@"%@picture_diary/posts",[Utilities API_link_url_subDomain]]];
         
-         NSLog(@"%@",responseString);
+        NSLog(@"%@",responseString);
         
         //   [NSString stringWithFormat:@"%@signup_step2",[Utility API_link_url]]
         
@@ -682,20 +682,20 @@
                 [[NSUserDefaults standardUserDefaults] setObject:dic_values forKey:@"User"];
                 [[NSUserDefaults standardUserDefaults]synchronize];
                 
-
+                
                 
                 [[NSNotificationCenter defaultCenter]
                  postNotificationName:@"REfress_User_panel"
                  object:nil];
                 
-
+                
             }
             
             
             
             [tableViewm reloadData];
             
-          
+            
             
         }else if([[dict valueForKey:@"message"] isEqualToString:[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"Authentication Failed" value:@"" table:nil]]){
             [[LogoutManager sharedManager] forceLogoutForChangePassword];
@@ -719,7 +719,7 @@
     }
     
     
-     [refreshControl endRefreshing];
+    [refreshControl endRefreshing];
     
     [self mStopIndicater];
     
@@ -749,64 +749,64 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-       UIView *sectionHeader = [[UIView alloc] init];
-       sectionHeader.frame=CGRectMake(0, 0,tableViewm.frame.size.width, 35);
+    UIView *sectionHeader = [[UIView alloc] init];
+    sectionHeader.frame=CGRectMake(0, 0,tableViewm.frame.size.width, 35);
     sectionHeader.backgroundColor=[Text_color_ EDU_Blog_Color_code];
     
-   
-       Student_name = [[UITextView alloc] initWithFrame:CGRectMake(0, 0,tableViewm.frame.size.width-90, 20)];
-        Student_name.backgroundColor = [Text_color_ EDU_Blog_Color_code];
-        Student_name.font = [Font_Face_Controller opensanssemibold:13];
-        Student_name.tag=section-1;
-    Student_name.editable = NO;
-//    Student_name.backgroundColor = [UIColor redColor];
     
-//    Student_name.contentInset = UIEdgeInsetsMake(0,0,0,0);
-//    Student_name.scrollEnabled = NO;
+    Student_name = [[UITextView alloc] initWithFrame:CGRectMake(0, 0,tableViewm.frame.size.width-90, 20)];
+    Student_name.backgroundColor = [Text_color_ EDU_Blog_Color_code];
+    Student_name.font = [Font_Face_Controller opensanssemibold:13];
+    Student_name.tag=section-1;
+    Student_name.editable = NO;
+    //    Student_name.backgroundColor = [UIColor redColor];
+    
+    //    Student_name.contentInset = UIEdgeInsetsMake(0,0,0,0);
+    //    Student_name.scrollEnabled = NO;
     
     
     [Student_name setTextContainerInset:UIEdgeInsetsZero];
     Student_name.textContainer.lineFragmentPadding = 0;
     
-//    CGPoint p = [Student_name contentOffset];
-//    Student_name.text = terms;
-//    [Student_name setContentOffset:p animated:NO];
-//    [Student_name scrollRangeToVisible:NSMakeRange([tv.text length], 0)];
+    //    CGPoint p = [Student_name contentOffset];
+    //    Student_name.text = terms;
+    //    [Student_name setContentOffset:p animated:NO];
+    //    [Student_name scrollRangeToVisible:NSMakeRange([tv.text length], 0)];
     
     
     NSLog(@"%@",[[[dict valueForKey:@"posts"]objectAtIndex:section]valueForKey:@"category"]);
     
-        NSLog(@"%ld",(long)section);
+    NSLog(@"%ld",(long)section);
     
     if ([[[[dict valueForKey:@"posts"]objectAtIndex:section]valueForKey:@"category"]isEqualToString:@"student"]) {
         
         
         if ([[[[dict valueForKey:@"posts"]objectAtIndex:section]valueForKey:@"students"]count]>=2) {
             
-             Student_name.text =[NSString stringWithFormat:@"%@#  %@# %@",[[[[[[dict valueForKey:@"posts"]objectAtIndex:section]valueForKey:@"students"]objectAtIndex:0]valueForKey:@"name"]stringByConvertingHTMLToPlainText],[[[[[[dict valueForKey:@"posts"]objectAtIndex:section]valueForKey:@"students"]objectAtIndex:1]valueForKey:@"name"]stringByConvertingHTMLToPlainText],@"..."];
+            Student_name.text =[NSString stringWithFormat:@"%@#  %@# %@",[[[[[[dict valueForKey:@"posts"]objectAtIndex:section]valueForKey:@"students"]objectAtIndex:0]valueForKey:@"name"]stringByConvertingHTMLToPlainText],[[[[[[dict valueForKey:@"posts"]objectAtIndex:section]valueForKey:@"students"]objectAtIndex:1]valueForKey:@"name"]stringByConvertingHTMLToPlainText],@"..."];
             
-           // Student_name.text = @"More";
-
+            // Student_name.text = @"More";
+            
             
         }
         else
         {
-             if ([[[[dict valueForKey:@"posts"]objectAtIndex:section]valueForKey:@"students"]count]>=2) {
-                 
-                 
-                 Student_name.text =[NSString stringWithFormat:@"%@#  %@#",[[[[[[dict valueForKey:@"posts"]objectAtIndex:section]valueForKey:@"students"]objectAtIndex:0]valueForKey:@"name"]stringByConvertingHTMLToPlainText],[[[[[[dict valueForKey:@"posts"]objectAtIndex:section]valueForKey:@"students"]objectAtIndex:1]valueForKey:@"name"]stringByConvertingHTMLToPlainText]];
-
-             }
+            if ([[[[dict valueForKey:@"posts"]objectAtIndex:section]valueForKey:@"students"]count]>=2) {
+                
+                
+                Student_name.text =[NSString stringWithFormat:@"%@#  %@#",[[[[[[dict valueForKey:@"posts"]objectAtIndex:section]valueForKey:@"students"]objectAtIndex:0]valueForKey:@"name"]stringByConvertingHTMLToPlainText],[[[[[[dict valueForKey:@"posts"]objectAtIndex:section]valueForKey:@"students"]objectAtIndex:1]valueForKey:@"name"]stringByConvertingHTMLToPlainText]];
+                
+            }
             else
             {
-            
-             Student_name.text =[NSString stringWithFormat:@"%@#", [[[[[[dict valueForKey:@"posts"]objectAtIndex:section]valueForKey:@"students"]objectAtIndex:0]valueForKey:@"name"]stringByConvertingHTMLToPlainText]];
+                
+                Student_name.text =[NSString stringWithFormat:@"%@#", [[[[[[dict valueForKey:@"posts"]objectAtIndex:section]valueForKey:@"students"]objectAtIndex:0]valueForKey:@"name"]stringByConvertingHTMLToPlainText]];
             }
-
+            
         }
         
-      
-//        [Student_name scrollRangeToVisible:NSMakeRange(0, 0)];
+        
+        //        [Student_name scrollRangeToVisible:NSMakeRange(0, 0)];
     }
     
     else if  ([[[[dict valueForKey:@"posts"]objectAtIndex:section]valueForKey:@"category"]isEqualToString:@"class"]) {
@@ -815,53 +815,53 @@
             
             
             
-              Student_name.text = [NSString stringWithFormat:@"%@#",[[[[dict valueForKey:@"posts"]objectAtIndex:section]valueForKey:@"category"]stringByConvertingHTMLToPlainText]];
+            Student_name.text = [NSString stringWithFormat:@"%@#",[[[[dict valueForKey:@"posts"]objectAtIndex:section]valueForKey:@"category"]stringByConvertingHTMLToPlainText]];
             
         }
         else
         {
-        
-        
-        if ([[[[dict valueForKey:@"posts"]objectAtIndex:section]valueForKey:@"groups"]count]>=3) {
-            
-            Student_name.text =[NSString stringWithFormat:@"%@#  %@# %@",[[[[[[dict valueForKey:@"posts"]objectAtIndex:section]valueForKey:@"groups"]objectAtIndex:0]valueForKey:@"name"]stringByConvertingHTMLToPlainText],[[[[[[dict valueForKey:@"posts"]objectAtIndex:section]valueForKey:@"groups"]objectAtIndex:1]valueForKey:@"name"]stringByConvertingHTMLToPlainText],@"More"];
-            
-            // Student_name.text = @"More";
             
             
-        }
-        else
-        {
-            if ([[[[dict valueForKey:@"posts"]objectAtIndex:section]valueForKey:@"groups"]count]>=2) {
+            if ([[[[dict valueForKey:@"posts"]objectAtIndex:section]valueForKey:@"groups"]count]>=3) {
                 
+                Student_name.text =[NSString stringWithFormat:@"%@#  %@# %@",[[[[[[dict valueForKey:@"posts"]objectAtIndex:section]valueForKey:@"groups"]objectAtIndex:0]valueForKey:@"name"]stringByConvertingHTMLToPlainText],[[[[[[dict valueForKey:@"posts"]objectAtIndex:section]valueForKey:@"groups"]objectAtIndex:1]valueForKey:@"name"]stringByConvertingHTMLToPlainText],@"More"];
                 
-                Student_name.text =[NSString stringWithFormat:@"%@#  %@#",[[[[[[dict valueForKey:@"posts"]objectAtIndex:section]valueForKey:@"groups"]objectAtIndex:0]valueForKey:@"name"]stringByConvertingHTMLToPlainText],[[[[[[dict valueForKey:@"posts"]objectAtIndex:section]valueForKey:@"groups"]objectAtIndex:1]valueForKey:@"name"]stringByConvertingHTMLToPlainText]];
+                // Student_name.text = @"More";
+                
                 
             }
             else
             {
+                if ([[[[dict valueForKey:@"posts"]objectAtIndex:section]valueForKey:@"groups"]count]>=2) {
+                    
+                    
+                    Student_name.text =[NSString stringWithFormat:@"%@#  %@#",[[[[[[dict valueForKey:@"posts"]objectAtIndex:section]valueForKey:@"groups"]objectAtIndex:0]valueForKey:@"name"]stringByConvertingHTMLToPlainText],[[[[[[dict valueForKey:@"posts"]objectAtIndex:section]valueForKey:@"groups"]objectAtIndex:1]valueForKey:@"name"]stringByConvertingHTMLToPlainText]];
+                    
+                }
+                else
+                {
+                    
+                    Student_name.text = [NSString stringWithFormat:@"%@#",[[[[[[dict valueForKey:@"posts"]objectAtIndex:section]valueForKey:@"groups"]objectAtIndex:0]valueForKey:@"name"]stringByConvertingHTMLToPlainText]];
+                }
                 
-                Student_name.text = [NSString stringWithFormat:@"%@#",[[[[[[dict valueForKey:@"posts"]objectAtIndex:section]valueForKey:@"groups"]objectAtIndex:0]valueForKey:@"name"]stringByConvertingHTMLToPlainText]];
             }
             
-        }
-
-        
+            
         }
         
     }
-
+    
     else
     {
         Student_name.text = [NSString stringWithFormat:@"%@#",[[[[dict valueForKey:@"posts"]objectAtIndex:section]valueForKey:@"category"]stringByConvertingHTMLToPlainText]];
-
+        
     }
     
     
-        Student_name.textAlignment = NSTextAlignmentLeft;
-        Student_name.textColor=[UIColor whiteColor];
-        
-        [sectionHeader addSubview:Student_name];
+    Student_name.textAlignment = NSTextAlignmentLeft;
+    Student_name.textColor=[UIColor whiteColor];
+    
+    [sectionHeader addSubview:Student_name];
     
     
     
@@ -871,54 +871,54 @@
     Tearch_name.text = [NSString stringWithFormat:@"%@ %@",[[[[dict valueForKey:@"posts"]objectAtIndex:section]valueForKey:@"teacher_name"]stringByConvertingHTMLToPlainText],[[[[dict valueForKey:@"posts"]objectAtIndex:section]valueForKey:@"created"]stringByConvertingHTMLToPlainText]];
     Tearch_name.textAlignment = NSTextAlignmentLeft;
     Tearch_name.textColor=[UIColor whiteColor];
-      [sectionHeader addSubview:Tearch_name];
+    [sectionHeader addSubview:Tearch_name];
     
     
     
     
     if (![[[[dict valueForKey:@"posts"]objectAtIndex:section]valueForKey:@"associated_curriculum_tags"]count]==0) {
-     
-    
-    //////////////////  Edit_IMG Image  Lable\\\\\\\\\\\\\\
-    
-    
-    cap_IMGs=[[UIImageView alloc]init];
-    cap_IMGs.image=[UIImage imageNamed:@"topi.png"];
-    cap_IMGs.frame=CGRectMake(tableViewm.frame.size.width-75,(sectionHeader.frame.size.height-25)/2,25, 25);
-    cap_IMGs.userInteractionEnabled=YES;
-    cap_IMGs.tag=section;
-    [sectionHeader addSubview:cap_IMGs];
-       
+        
+        
+        //////////////////  Edit_IMG Image  Lable\\\\\\\\\\\\\\
+        
+        
+        cap_IMGs=[[UIImageView alloc]init];
+        cap_IMGs.image=[UIImage imageNamed:@"topi.png"];
+        cap_IMGs.frame=CGRectMake(tableViewm.frame.size.width-75,(sectionHeader.frame.size.height-25)/2,25, 25);
+        cap_IMGs.userInteractionEnabled=YES;
+        cap_IMGs.tag=section;
+        [sectionHeader addSubview:cap_IMGs];
+        
         
         
         UITapGestureRecognizer * cap_IMG_URL = [[UITapGestureRecognizer alloc]
-                                              initWithTarget:self
-                                              action:@selector( cap_IMG_action:)];
+                                                initWithTarget:self
+                                                action:@selector( cap_IMG_action:)];
         
         
         [cap_IMGs addGestureRecognizer: cap_IMG_URL];
-
-
+        
+        
         
     }
     
     
-       
+    
     
     if (([[[NSUserDefaults standardUserDefaults]valueForKey:@"user_type"]isEqualToString:@"teacher"] ||[[[NSUserDefaults standardUserDefaults]valueForKey:@"user_type"]isEqualToString:@"lärare"]) && [[[NSUserDefaults standardUserDefaults]valueForKey:@"user_id"]isEqualToString:[[[dict valueForKey:@"posts"]objectAtIndex:section]valueForKey:@"user_id"]]) {
         
-    UIImageView *Edit_IMG=[[UIImageView alloc]init];
-    Edit_IMG.image=[UIImage imageNamed:@"pen.png"];
-    Edit_IMG.frame=CGRectMake(tableViewm.frame.size.width-35,(sectionHeader.frame.size.height-25)/2,25, 25);
-    Edit_IMG.userInteractionEnabled=YES;
-    Edit_IMG.tag=section;
-
-    [sectionHeader addSubview:Edit_IMG];
+        UIImageView *Edit_IMG=[[UIImageView alloc]init];
+        Edit_IMG.image=[UIImage imageNamed:@"pen.png"];
+        Edit_IMG.frame=CGRectMake(tableViewm.frame.size.width-35,(sectionHeader.frame.size.height-25)/2,25, 25);
+        Edit_IMG.userInteractionEnabled=YES;
+        Edit_IMG.tag=section;
+        
+        [sectionHeader addSubview:Edit_IMG];
         
         
         UITapGestureRecognizer * Edit_IMG_URL = [[UITapGestureRecognizer alloc]
-                                                initWithTarget:self
-                                                action:@selector( Edit_IMG_action:)];
+                                                 initWithTarget:self
+                                                 action:@selector( Edit_IMG_action:)];
         
         
         [Edit_IMG addGestureRecognizer: Edit_IMG_URL];
@@ -929,11 +929,11 @@
     {
         cap_IMGs.frame=CGRectMake(tableViewm.frame.size.width-35,(sectionHeader.frame.size.height-25)/2,25, 25);
     }
-
     
-//      [Student_name setContentOffset:CGPointZero animated:NO];
     
-        return sectionHeader;
+    //      [Student_name setContentOffset:CGPointZero animated:NO];
+    
+    return sectionHeader;
     
     
 }
@@ -964,7 +964,7 @@
     
     
     NSLog(@"%@",[[[dict valueForKey:@"posts"]objectAtIndex:view.tag]valueForKey:@"associated_curriculum_tags"]);
-                 
+    
     
     
     Curriculum_Tags_ViewController *objCurriculum_Tags_ViewController=[[Curriculum_Tags_ViewController alloc]init];
@@ -973,7 +973,7 @@
     [self.navigationController pushViewController:objCurriculum_Tags_ViewController animated:YES];
     
     
-
+    
     
     
 }
@@ -981,47 +981,57 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    NSLog(@"indexPath.row %ld", indexPath.row);
     CGSize labelHeight = [self heigtForCellwithString:[[[[dict valueForKey:@"posts"]objectAtIndex:indexPath.section]valueForKey:@"description"] stringByConvertingHTMLToPlainText]    withFont:[Font_Face_Controller opensansregular:11]];
     
     //////////////// No files no test ///////////////////
     
     if ([[[[dict valueForKey:@"posts"]objectAtIndex:indexPath.section]valueForKey:@"images"]count]==0 && [[[[dict valueForKey:@"posts"]objectAtIndex:indexPath.section]valueForKey:@"videos"]count]==0 && [[[[dict valueForKey:@"posts"]objectAtIndex:indexPath.section]valueForKey:@"random_files"]count]==0 &&[[[[dict valueForKey:@"posts"]objectAtIndex:indexPath.section]valueForKey:@"description"]isEqualToString:@""])
     {
-        labelHeight.height = labelHeight.height+55;
+        labelHeight.height = labelHeight.height+90;
     }
-
     
     
-     //////////////// images and videos and random_files ///////////////////
     
-  else  if (![[[[dict valueForKey:@"posts"]objectAtIndex:indexPath.section]valueForKey:@"images"]count]==0 && ![[[[dict valueForKey:@"posts"]objectAtIndex:indexPath.section]valueForKey:@"videos"]count]==0 && ![[[[dict valueForKey:@"posts"]objectAtIndex:indexPath.section]valueForKey:@"random_files"]count]==0)
+    //////////////// images and videos and random_files ///////////////////
+    
+    else  if (![[[[dict valueForKey:@"posts"]objectAtIndex:indexPath.section]valueForKey:@"images"]count]==0 && ![[[[dict valueForKey:@"posts"]objectAtIndex:indexPath.section]valueForKey:@"videos"]count]==0 && ![[[[dict valueForKey:@"posts"]objectAtIndex:indexPath.section]valueForKey:@"random_files"]count]==0)
     {
         
         if ([[[[dict valueForKey:@"posts"]objectAtIndex:indexPath.section]valueForKey:@"random_files"]count]==1) {
             
-             labelHeight.height = labelHeight.height+50;
+            labelHeight.height = labelHeight.height+50;
             
         }
         else
         {
-             labelHeight.height = labelHeight.height+60;
+            labelHeight.height = labelHeight.height+60;
         }
         
-       
+        
     }
     
     
-     //////////////// No files  ///////////////////
+    //////////////// No files  ///////////////////
     
-  else  if ([[[[dict valueForKey:@"posts"]objectAtIndex:indexPath.section]valueForKey:@"images"]count]==0 && [[[[dict valueForKey:@"posts"]objectAtIndex:indexPath.section]valueForKey:@"videos"]count]==0 && [[[[dict valueForKey:@"posts"]objectAtIndex:indexPath.section]valueForKey:@"random_files"]count]==0 )
+    else  if ([[[[dict valueForKey:@"posts"]objectAtIndex:indexPath.section]valueForKey:@"images"]count]==0 && [[[[dict valueForKey:@"posts"]objectAtIndex:indexPath.section]valueForKey:@"videos"]count]==0 && [[[[dict valueForKey:@"posts"]objectAtIndex:indexPath.section]valueForKey:@"random_files"]count]==0 )
     {
-        labelHeight.height = labelHeight.height+70;
+        NSLog(@"%ld", (long)indexPath.section);
+        if (labelHeight.height<200){
+            labelHeight.height = labelHeight.height+90;
+        }else{
+            labelHeight.height = labelHeight.height+150;
+            
+        }
+        
+        // labelHeight.height = labelHeight.height+150;
     }
-     //////////////// images and videos ///////////////////
+    //////////////// images and videos ///////////////////
     
     else if (![[[[dict valueForKey:@"posts"]objectAtIndex:indexPath.section]valueForKey:@"images"]count]==0 && ![[[[dict valueForKey:@"posts"]objectAtIndex:indexPath.section]valueForKey:@"videos"]count]==0 &&[[[[dict valueForKey:@"posts"]objectAtIndex:indexPath.section]valueForKey:@"random_files"]count]==0)
     {
-                labelHeight.height = labelHeight.height+380;
+        labelHeight.height = labelHeight.height+380;
         
     }
     
@@ -1040,12 +1050,12 @@
         {
             labelHeight.height = labelHeight.height+260;
         }
-
+        
         
     }
-
     
-     ////////////////  videos ///////////////////
+    
+    ////////////////  videos ///////////////////
     
     else if ([[[[dict valueForKey:@"posts"]objectAtIndex:indexPath.section]valueForKey:@"images"]count]==0 && ![[[[dict valueForKey:@"posts"]objectAtIndex:indexPath.section]valueForKey:@"videos"]count]==0 &&[[[[dict valueForKey:@"posts"]objectAtIndex:indexPath.section]valueForKey:@"random_files"]count]==0)
     {
@@ -1055,24 +1065,24 @@
     
     
     ////////////////  images and  random_files///////////////////
-
+    
     
     else if (![[[[dict valueForKey:@"posts"]objectAtIndex:indexPath.section]valueForKey:@"images"]count]==0 && [[[[dict valueForKey:@"posts"]objectAtIndex:indexPath.section]valueForKey:@"videos"]count]==0 &&![[[[dict valueForKey:@"posts"]objectAtIndex:indexPath.section]valueForKey:@"random_files"]count]==0)
     {
         
         
-        if ([[[[dict valueForKey:@"posts"]objectAtIndex:indexPath.section]valueForKey:@"random_files"]count]==1)
-        {
-            
-             labelHeight.height = labelHeight.height+250;
-        }
-        else
-        {
-             labelHeight.height = labelHeight.height+260;
-        }
+        //        if ([[[[dict valueForKey:@"posts"]objectAtIndex:indexPath.section]valueForKey:@"random_files"]count]==1)
+        //        {
+        //
+        labelHeight.height = labelHeight.height+340;
+        //        }
+        //        else
+        //        {
+        //             labelHeight.height = labelHeight.height+260;
+        //        }
         
         
-       
+        
         
     }
     
@@ -1081,7 +1091,12 @@
     
     else if (![[[[dict valueForKey:@"posts"]objectAtIndex:indexPath.section]valueForKey:@"images"]count]==0 && [[[[dict valueForKey:@"posts"]objectAtIndex:indexPath.section]valueForKey:@"videos"]count]==0 &&[[[[dict valueForKey:@"posts"]objectAtIndex:indexPath.section]valueForKey:@"random_files"]count]==0)
     {
-        labelHeight.height = labelHeight.height+225;
+        if (labelHeight.height<50){
+            labelHeight.height = labelHeight.height+225;
+        }else{
+            labelHeight.height = labelHeight.height+380;
+            
+        }
         
     }
     
@@ -1097,8 +1112,8 @@
         
         if ([[[[dict valueForKey:@"posts"]objectAtIndex:indexPath.section]valueForKey:@"random_files"]count]==1)
         {
-        
-        labelHeight.height = labelHeight.height+95;
+            
+            labelHeight.height = labelHeight.height+200;
         }
         else
         {
@@ -1110,13 +1125,16 @@
     
     else if (![[[[dict valueForKey:@"posts"]objectAtIndex:indexPath.section]valueForKey:@"random_files"]count]==0)
     {
+        NSLog(@"have random");
         labelHeight.height = labelHeight.height+380;
         
     }
     
     else if (![[[[dict valueForKey:@"posts"]objectAtIndex:indexPath.section]valueForKey:@"images"]count]==0)
     {
-        labelHeight.height = labelHeight.height+205;
+        NSLog(@"have iamge");
+        
+        labelHeight.height = labelHeight.height+225;
         
     }
     
@@ -1127,10 +1145,10 @@
     }
     else
     {
-       labelHeight.height = labelHeight.height+65;
+        labelHeight.height = labelHeight.height+65;
         
     }
-
+    
     
     
     return labelHeight.height; // the return height + your other view height
@@ -1144,16 +1162,7 @@
                                             options:         (NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
                                          attributes:attributes
                                             context:nil];
-    
-    
-    
-    
-        
-        
-
-    
-    
-    
+    rect.size = CGSizeMake(rect.size.width, rect.size.height +2);
     
     return rect.size;
     
@@ -1198,7 +1207,7 @@
     description=[[UITextView alloc]init];
     description.backgroundColor=[UIColor clearColor];
     description.text=[[[dict valueForKey:@"posts"]objectAtIndex:indexPath.section]valueForKey:@"description"];
-//    description.numberOfLines = 0;
+    //    description.numberOfLines = 0;
     description.frame=CGRectMake(5, 5, tableViewm.frame.size.width-10, 40);
     
     
@@ -1213,9 +1222,6 @@
     
     if (![[[[dict valueForKey:@"posts"]objectAtIndex:indexPath.section]valueForKey:@"images"]count]==0)
     {
-        
-        
-        
         
         //create the scrollview with specific frame
         scrollView = [[ALScrollViewPaging alloc] initWithFrame:CGRectMake(0, description.frame.origin.y+description.frame.size.height,[[UIScreen mainScreen]bounds].size.width, 150)];
@@ -1299,12 +1305,6 @@
             
         }
         
-        
-        
-        
-        
-        
-        
     }
     
     else
@@ -1338,11 +1338,6 @@
         
         
         for (int i = 0; i <[[[[dict valueForKey:@"posts"]objectAtIndex:indexPath.section]valueForKey:@"videos"]count]; i++) {
-            
-            
-            
-            
-            
             Demoimg__Vedio=[[UIImageView alloc]init];
             Demoimg__Vedio.userInteractionEnabled=YES;
             Demoimg__Vedio.frame=CGRectMake(0,20,scrollView_Vedio.frame.size.width, 110);
@@ -1471,7 +1466,7 @@
             
             
             download_IMG=[[UIImageView alloc]init];
-            download_IMG.frame=CGRectMake(8, Sframe+3, 10, 10);
+            download_IMG.frame=CGRectMake(8, Sframe+3, 15, 15);
             download_IMG.image=[UIImage imageNamed:@"down_arrow_grey.png"];
             [cell.contentView addSubview:download_IMG];
             
@@ -1508,7 +1503,7 @@
                 
                 
                 download_IMG=[[UIImageView alloc]init];
-                download_IMG.frame=CGRectMake(8, Sframe+3, 10, 15);
+                download_IMG.frame=CGRectMake(8, Sframe+3, 15, 15);
                 download_IMG.image=[UIImage imageNamed:@"down_arrow_grey.png"];
                 [cell.contentView addSubview:download_IMG];
                 
@@ -1556,7 +1551,7 @@
     
     
     Like=[UIButton buttonWithType:UIButtonTypeCustom];
-    Like.frame=CGRectMake(7,number_of_random_files.frame.origin.y+number_of_random_files.frame.size.height+9, 16, 16);
+    Like.frame=CGRectMake(7,number_of_random_files.frame.origin.y+number_of_random_files.frame.size.height+12, 16, 16);
     
     if ([[[[dict valueForKey:@"posts"]objectAtIndex:indexPath.section]valueForKey:@"already_liked"] isEqualToString:@"no"]) {
         
@@ -1651,8 +1646,8 @@
     
     [btnName addTarget:self action:@selector(downloadButtonClickedInPhotoViewer) forControlEvents:UIControlEventTouchUpInside];
     
-//    browser.actionButton = [[UIBarButtonItem alloc] initWithCustomView:btnName];
-
+    //    browser.actionButton = [[UIBarButtonItem alloc] initWithCustomView:btnName];
+    
     // Test custom selection images
     //    browser.customImageSelectedIconName = @"ImageSelected.png";
     //    browser.customImageSelectedSmallIconName = @"ImageSelectedSmall.png";
@@ -1758,15 +1753,15 @@
 
 -(void) downloadButtonClickedInPhotoViewer
 {
-//    CGImageRef imageToDownload = [[photos objectAtIndex:0] CGImage];
-  
+    //    CGImageRef imageToDownload = [[photos objectAtIndex:0] CGImage];
+    
     
     dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         // Add code here to do background processing
         //
         //
-//        loader_image=[ELR_loaders_ Start_loader:CGRectMake(([[UIScreen mainScreen]bounds].size.width-85)/2,[[UIScreen mainScreen]bounds].size.height/2,85,85)];
-//        [browser addSubview:loader_image];
+        //        loader_image=[ELR_loaders_ Start_loader:CGRectMake(([[UIScreen mainScreen]bounds].size.width-85)/2,[[UIScreen mainScreen]bounds].size.height/2,85,85)];
+        //        [browser addSubview:loader_image];
         
         
         NSData* imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[Utilities API_link_url_subDomain_for_IMG:[[array_With_Image_Of_Each_Tag objectAtIndex:indexOf_Image_viewed]valueForKey:@"id"]]]];
@@ -1774,34 +1769,34 @@
         UIImage *imageToBeSaved = [[UIImage alloc]initWithData:imageData];
         
         UIImageWriteToSavedPhotosAlbum(imageToBeSaved, nil, nil, nil);
-
+        
         dispatch_async( dispatch_get_main_queue(), ^{
             UIAlertView * downloadAlert = [[UIAlertView alloc]initWithTitle:@"Downloaded" message:@"Image saved to Camera roll" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
             [downloadAlert show];
-//            [loader_image removeFromSuperview];
+            //            [loader_image removeFromSuperview];
             // Add code here to update the UI/send notifications based on the
             // results of the background processing
         });
     });
     
-//     UIImage* uiImage = [[UIImage alloc] initWithCGImage:(imageToDownload)];
-//    
-//    NSData *imageData = UIImagePNGRepresentation(uiImage);
+    //     UIImage* uiImage = [[UIImage alloc] initWithCGImage:(imageToDownload)];
+    //
+    //    NSData *imageData = UIImagePNGRepresentation(uiImage);
     
-//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//    NSString *documentsDirectory = [paths objectAtIndex:0];
-//    
-//    NSString *imagePath =[documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",@"cached"]];
-//    
-//    NSLog(@"pre writing to file");
-//    if (![imageData writeToFile:imagePath atomically:NO])
-//    {
-//        NSLog(@"Failed to cache image data to disk");
-//    }
-//    else
-//    {
-//        NSLog(@"the cachedImagedPath is %@",imagePath);
-//    }
+    //    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    //    NSString *documentsDirectory = [paths objectAtIndex:0];
+    //
+    //    NSString *imagePath =[documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",@"cached"]];
+    //
+    //    NSLog(@"pre writing to file");
+    //    if (![imageData writeToFile:imagePath atomically:NO])
+    //    {
+    //        NSLog(@"Failed to cache image data to disk");
+    //    }
+    //    else
+    //    {
+    //        NSLog(@"the cachedImagedPath is %@",imagePath);
+    //    }
 }
 #pragma mark - Load Assets
 
@@ -1926,16 +1921,16 @@
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.id contains[cd] %@", [NSString stringWithFormat:@"%d",view.tag]];
     
     NSArray *filtered = [ [beginWithB objectAtIndex:0]
- filteredArrayUsingPredicate:predicate];
+                         filteredArrayUsingPredicate:predicate];
     
     NSLog(@"%@",[filtered valueForKey:@"videoname_mp4"]);
     
     
     
-      NSLog(@"%@",[NSString stringWithFormat:@"%@%@",[Utilities API_link_url_IMG],[[filtered valueForKey:@"videoname_mp4"]objectAtIndex:0]]);
+    NSLog(@"%@",[NSString stringWithFormat:@"%@%@",[Utilities API_link_url_IMG],[[filtered valueForKey:@"videoname_mp4"]objectAtIndex:0]]);
     
     
-      NSLog(@"%@",[NSString stringWithFormat:@"%@%@",[Utilities API_link_url_IMG],[filtered valueForKey:@"videoname_mp4"]]);
+    NSLog(@"%@",[NSString stringWithFormat:@"%@%@",[Utilities API_link_url_IMG],[filtered valueForKey:@"videoname_mp4"]]);
     
     
     
@@ -1943,14 +1938,14 @@
     
     
     NSLog(@"%@",uel_STR);
-
+    
     
     
     
     
     fileURLForVideo = [NSURL URLWithString:uel_STR];
     
-     moviePlayerController = [[MPMoviePlayerController alloc] initWithContentURL:fileURLForVideo];
+    moviePlayerController = [[MPMoviePlayerController alloc] initWithContentURL:fileURLForVideo];
     [moviePlayerController.view setFrame:CGRectMake(0, 50, self.view.frame.size.width, self.view.frame.size.height-50)];
     [self.view addSubview:moviePlayerController.view];
     moviePlayerController.fullscreen = NO;
@@ -1959,14 +1954,14 @@
     
     [self customVieForHeader];
     
-//    UIButton *pauseButton=[[UIButton alloc]init];
-//    [pauseButton setFrame:CGRectMake(0,0, 50, 50)];
-//    [pauseButton setBackgroundColor:[UIColor yellowColor]];
-//    [pauseButton setTag:123456789];
-//    [pauseButton setAccessibilityValue:@"445"];
-//    [pauseButton setAccessibilityLabel:@"445"];
-//    [pauseButton addTarget:self action:@selector(pauseBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:pauseButton];
+    //    UIButton *pauseButton=[[UIButton alloc]init];
+    //    [pauseButton setFrame:CGRectMake(0,0, 50, 50)];
+    //    [pauseButton setBackgroundColor:[UIColor yellowColor]];
+    //    [pauseButton setTag:123456789];
+    //    [pauseButton setAccessibilityValue:@"445"];
+    //    [pauseButton setAccessibilityLabel:@"445"];
+    //    [pauseButton addTarget:self action:@selector(pauseBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+    //    [self.view addSubview:pauseButton];
     
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -1974,30 +1969,30 @@
                                                  name:MPMoviePlayerWillExitFullscreenNotification
                                                object:nil];
     
-
+    
 }
 
 
 -(void) customVieForHeader
 {
-//    UIView * viewForHeader = [UIView view];
+    //    UIView * viewForHeader = [UIView view];
     navbarForVideo = [[UINavigationBar alloc]initWithFrame:CGRectMake(0, 0, 400, 50)];
     navbarForVideo.translucent = YES;
-
+    
     //do something like background color, title, etc you self
     [self.view addSubview:navbarForVideo];
     
     UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Show" style:UIBarButtonItemStylePlain target:self action:@selector(refreshPropertyList:)];
-//    self.navigationItem.rightBarButtonItem = anotherButton;
+    //    self.navigationItem.rightBarButtonItem = anotherButton;
     
-//    UIBarButtonItem * item1= [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"download"] style:UIBarButtonItemStylePlain target:self action:@selector(yourButtonAction1)];
-//    navbar.topItem.rightBarButtonItem = item1;
+    //    UIBarButtonItem * item1= [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"download"] style:UIBarButtonItemStylePlain target:self action:@selector(yourButtonAction1)];
+    //    navbar.topItem.rightBarButtonItem = item1;
     
     
-   downloadButtonForVideo=[[UIButton alloc]init];
+    downloadButtonForVideo=[[UIButton alloc]init];
     [downloadButtonForVideo setFrame:CGRectMake(self.view.frame.size.width - 50,15, 30, 30)];
-//    [downloadButton setBackgroundColor:[UIColor yellowColor]];
-//    [downloadButton setImage:[UIImage imageNamed:@"down_arrow_grey"] forState:UIControlStateNormal];
+    //    [downloadButton setBackgroundColor:[UIColor yellowColor]];
+    //    [downloadButton setImage:[UIImage imageNamed:@"down_arrow_grey"] forState:UIControlStateNormal];
     [downloadButtonForVideo setBackgroundImage: [UIImage imageNamed:@"download"] forState:UIControlStateNormal];
     [downloadButtonForVideo setTag:123456789];
     [downloadButtonForVideo setAccessibilityValue:@"445"];
@@ -2005,13 +2000,13 @@
     [downloadButtonForVideo addTarget:self action:@selector(DownloadVideo) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:downloadButtonForVideo];
     
-//    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-//    UIImage *butImage = [[UIImage imageNamed:@"back-2"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
-//    [button setBackgroundImage:butImage forState:UIControlStateNormal];
-//    [button addTarget:self action:@selector(doneButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-//    button.frame = CGRectMake(20, 25, 20, 20);
-//    [button setTitleColor:[UIColor colorWithRed:101.0f/255.0f green:101.0f/255.0f blue:101.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
-//    [self.view addSubview:button];
+    //    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    //    UIImage *butImage = [[UIImage imageNamed:@"back-2"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
+    //    [button setBackgroundImage:butImage forState:UIControlStateNormal];
+    //    [button addTarget:self action:@selector(doneButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    //    button.frame = CGRectMake(20, 25, 20, 20);
+    //    [button setTitleColor:[UIColor colorWithRed:101.0f/255.0f green:101.0f/255.0f blue:101.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
+    //    [self.view addSubview:button];
     
     
 }
@@ -2019,31 +2014,31 @@
 -(void)DownloadVideo
 {
     //download the file in a seperate thread.
-//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//        NSLog(@"Downloading Started");
-//       // NSString *urlToDownload = @"http://www.somewhere.com/thefile.mp4";
-////        NSURL  *url = [NSURL URLWithString:urlToDownload];
-//        NSData *urlData = [NSData dataWithContentsOfURL:fileURLForVideo];
-//        if ( urlData )
-//        {
-//            NSArray       *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//            NSString  *documentsDirectory = [paths objectAtIndex:0];
-//            
-//            NSString  *filePath = [NSString stringWithFormat:@"%@/%@", documentsDirectory,@"thefile.mp4"];
-//            
-//            //saving is done on main thread
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                [urlData writeToFile:filePath atomically:YES];
-//                NSLog(@"File Saved !");
-//            });
-//        }
-//        
-//    });
+    //    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    //        NSLog(@"Downloading Started");
+    //       // NSString *urlToDownload = @"http://www.somewhere.com/thefile.mp4";
+    ////        NSURL  *url = [NSURL URLWithString:urlToDownload];
+    //        NSData *urlData = [NSData dataWithContentsOfURL:fileURLForVideo];
+    //        if ( urlData )
+    //        {
+    //            NSArray       *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    //            NSString  *documentsDirectory = [paths objectAtIndex:0];
+    //
+    //            NSString  *filePath = [NSString stringWithFormat:@"%@/%@", documentsDirectory,@"thefile.mp4"];
+    //
+    //            //saving is done on main thread
+    //            dispatch_async(dispatch_get_main_queue(), ^{
+    //                [urlData writeToFile:filePath atomically:YES];
+    //                NSLog(@"File Saved !");
+    //            });
+    //        }
+    //
+    //    });
     
     
     
     
-//    NSURL *videoUrl = [NSURL URLWithString:[NSString stringWithFormat:@"Your Video Url or Path"]];
+    //    NSURL *videoUrl = [NSURL URLWithString:[NSString stringWithFormat:@"Your Video Url or Path"]];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     downloadButtonForVideo.enabled = NO;
     dispatch_queue_t q = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
@@ -2072,12 +2067,12 @@
                      [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                      UIAlertView * successAlert = [[UIAlertView alloc]initWithTitle:@"" message:[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"Video is downloaded to your Photos" value:@"" table:nil] delegate:nil cancelButtonTitle:[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"Ok" value:@"" table:nil] otherButtonTitles:nil, nil];
                      [successAlert show];
-//                     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//                     NSString *documentsDirectory = [paths objectAtIndex:0];
-//
-//                     NSString *sourcePath = [documentsDirectory stringByAppendingPathComponent:@"file2.mp4"];
-//                     UISaveVideoAtPathToSavedPhotosAlbum(sourcePath,nil,nil,nil);
-
+                     //                     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+                     //                     NSString *documentsDirectory = [paths objectAtIndex:0];
+                     //
+                     //                     NSString *sourcePath = [documentsDirectory stringByAppendingPathComponent:@"file2.mp4"];
+                     //                     UISaveVideoAtPathToSavedPhotosAlbum(sourcePath,nil,nil,nil);
+                     
                  }
                  
              }];
@@ -2087,7 +2082,7 @@
 
 -(void)doneButtonClick:(NSNotification*)aNotification{
     
-   [moviePlayerController.view removeFromSuperview];
+    [moviePlayerController.view removeFromSuperview];
     [navbarForVideo removeFromSuperview];
     [downloadButtonForVideo removeFromSuperview];
     
@@ -2114,7 +2109,7 @@
      name:MPMoviePlayerPlaybackDidFinishNotification
      object:player];
     
-       [moviePlayerController.view removeFromSuperview];
+    [moviePlayerController.view removeFromSuperview];
     
     NSLog(@"stopped?");
 }
@@ -2123,7 +2118,7 @@
 - (void) random_file_action: (UITapGestureRecognizer *)recognizer
 {
     
-        
+    
     UIView *view = recognizer.view; //cast pointer to the derived class if needed
     NSLog(@"%d", view.tag);
     
@@ -2136,7 +2131,7 @@
     
     
     
-    }
+}
 
 
 
@@ -2150,8 +2145,8 @@
 {
     
     UIButton *btn = (UIButton *)sender;
-//    
-//    
+    //
+    //
     indexvalues=sender.tag;
     
     
@@ -2177,7 +2172,7 @@
             [cellDict setObject:@"yes" forKey:@"already_liked"];
             
             [Like setBackgroundImage:[UIImage imageNamed:@"unlike.png"] forState:UIControlStateNormal];
-           
+            
             
         }
         
@@ -2187,7 +2182,7 @@
             
             [cellDict setObject:@"no" forKey:@"already_liked"];
             
-           [Like setBackgroundImage:[UIImage imageNamed:@"like.png"] forState:UIControlStateNormal];
+            [Like setBackgroundImage:[UIImage imageNamed:@"like.png"] forState:UIControlStateNormal];
         }
         
         
@@ -2209,7 +2204,7 @@
         
         alert = [[UIAlertView alloc] initWithTitle:[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"Error" value:@"" table:nil] message:[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"Not connected to the internet" value:@"" table:nil] delegate:self cancelButtonTitle:nil otherButtonTitles:[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"Ok" value:@"" table:nil], nil];
         [alert show];
-
+        
     }
     
     
@@ -2231,7 +2226,7 @@
         NSDictionary *responseDict = [responseString JSONValue];
         dict_like = [[NSMutableDictionary alloc ]  initWithDictionary:responseDict];
         
-
+        
         
         
         
@@ -2239,20 +2234,20 @@
         if ([[dict_like valueForKey:@"status"]isEqualToString:@"true"]) {
             
             
-//            NSMutableDictionary *svalue=[[NSMutableDictionary alloc]init];
-//            
-//            
-//            
-//            [svalue setValue:[[[[dict valueForKey:@"result"]valueForKey:@"data"]objectAtIndex:indexvalues]valueForKey:@"tot_likes"] forKey:@"like_count"];
-//            
-//            
-//            
-//            
-//            
-//            
-//            [svalue setValue:value forKey:@"post_id"];
-//            [svalue setValue:[[[[dict valueForKey:@"result"]valueForKey:@"data"]objectAtIndex:indexvalues]valueForKey:@"melike"] forKey:@"melike"];
-//            
+            //            NSMutableDictionary *svalue=[[NSMutableDictionary alloc]init];
+            //
+            //
+            //
+            //            [svalue setValue:[[[[dict valueForKey:@"result"]valueForKey:@"data"]objectAtIndex:indexvalues]valueForKey:@"tot_likes"] forKey:@"like_count"];
+            //
+            //
+            //
+            //
+            //
+            //
+            //            [svalue setValue:value forKey:@"post_id"];
+            //            [svalue setValue:[[[[dict valueForKey:@"result"]valueForKey:@"data"]objectAtIndex:indexvalues]valueForKey:@"melike"] forKey:@"melike"];
+            //
             
             
             
@@ -2272,7 +2267,7 @@
         
         alert = [[UIAlertView alloc] initWithTitle:[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"Error" value:@"" table:nil] message:[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"Not connected to the internet" value:@"" table:nil] delegate:self cancelButtonTitle:nil otherButtonTitles:[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"Ok" value:@"" table:nil], nil];
         [alert show];
-
+        
     }
     
     
@@ -2301,14 +2296,14 @@
     
     msearch_STR=searchBar.text;
     
-       [searchBar resignFirstResponder];
-     searchBar.text=@"";
+    [searchBar resignFirstResponder];
+    searchBar.text=@"";
     
     
     [self mStartIndicater];
     
     [self performSelector:@selector(CallTheServer_EDU_POST_API) withObject:nil afterDelay:0.5];
-
+    
     
     
 }
@@ -2316,10 +2311,10 @@
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
 {
     
-     [searchBar resignFirstResponder];
+    [searchBar resignFirstResponder];
     searchBar.text=@"";
-   
-      //  [searchBar setShowsCancelButton:NO animated:YES];
+    
+    //  [searchBar setShowsCancelButton:NO animated:YES];
     
     
 }
