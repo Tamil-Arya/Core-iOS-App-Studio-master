@@ -376,17 +376,16 @@
 
 
 - (NSString*)convertEntiesInString:(NSString*)htmlString {
-    NSData* stringData = [htmlString dataUsingEncoding:NSUTF8StringEncoding];
-    NSDictionary* options = @{NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType};
  
+    NSData *stringData = [htmlString dataUsingEncoding:NSUTF8StringEncoding];
     
-    NSAttributedString* decodedAttributedString = [[NSAttributedString alloc] initWithData:stringData options:options documentAttributes:NULL error:NULL];
-    NSString* decodedString = [decodedAttributedString string];
-    
-    NSData *temp = [decodedString dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-    NSString *dst = [[NSString alloc] initWithData:temp encoding:NSASCIIStringEncoding];
-    
-    return dst;
+    NSDictionary *options = @{NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType};
+    NSAttributedString *decodedString;
+    decodedString = [[NSAttributedString alloc] initWithData:stringData
+                                                     options:options
+                                          documentAttributes:NULL
+                                                       error:NULL];    
+    return decodedString.string;
 }
 
 

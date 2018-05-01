@@ -205,12 +205,12 @@
 -(void)LOg_in
 {
     
-    NSArray *subViewArray = [self.window     subviews];
-    for (id obj in subViewArray)
-    {
-        [obj removeFromSuperview];
-        
-    }
+//    NSArray *subViewArray = [self.window     subviews];
+//    for (id obj in subViewArray)
+//    {
+//        [obj removeFromSuperview];
+//        
+//    }
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
@@ -622,18 +622,14 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
    
+}
 
+- (void)applicationDidBecomeActive:(UIApplication *)application {
     UIViewController *topVc = [self topMostController];
     if (![topVc isKindOfClass:[Login_ViewController class]]) {
         [self mStartIndicater];
         [self webServiceCallForTermsOfConditions];
     }
-    
-}
-
-- (void)applicationDidBecomeActive:(UIApplication *)application {
-    
-   
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

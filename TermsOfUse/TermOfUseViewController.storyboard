@@ -60,7 +60,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zay-zO-ewB">
+                                                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zay-zO-ewB">
                                                     <rect key="frame" x="325" y="10" width="20" height="20"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
@@ -139,11 +139,11 @@
                                     <constraint firstAttribute="width" constant="94" id="wOa-Yo-Rv5"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                <state key="normal" title="Accept">
+                                <state key="normal" title="Decline">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="accept:" destination="Rp1-D7-Bq7" eventType="touchUpInside" id="lmw-lA-2Zz"/>
+                                    <action selector="decline:" destination="Rp1-D7-Bq7" eventType="touchUpInside" id="ZYn-db-nrv"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yTq-j7-r5C">
@@ -153,11 +153,11 @@
                                     <constraint firstAttribute="width" constant="94" id="kBk-62-h9E"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                <state key="normal" title="Decline">
+                                <state key="normal" title="Accept">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="decline:" destination="Rp1-D7-Bq7" eventType="touchUpInside" id="7cm-NV-R1v"/>
+                                    <action selector="accept:" destination="Rp1-D7-Bq7" eventType="touchUpInside" id="lVR-nr-WGd"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -191,8 +191,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="Terms of use" id="tob-Xh-1Yk"/>
                     <connections>
-                        <outlet property="accept_Button" destination="xSF-vk-7oF" id="SSG-7c-p6y"/>
-                        <outlet property="decline_button" destination="yTq-j7-r5C" id="QCT-92-3xm"/>
+                        <outlet property="accept_Button" destination="yTq-j7-r5C" id="g2r-6Q-Ilo"/>
+                        <outlet property="decline_button" destination="xSF-vk-7oF" id="lrd-Pr-BPW"/>
                         <outlet property="logOut_button" destination="70S-iV-eB0" id="8j0-7Q-eLz"/>
                         <outlet property="tableView" destination="Tev-bO-jSf" id="Vr3-7N-Ch3"/>
                         <outlet property="termsOfUseLabel" destination="qb9-8X-wUi" id="OPu-Wl-bxK"/>
