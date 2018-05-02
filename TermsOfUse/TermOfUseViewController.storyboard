@@ -11,7 +11,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Terms of use-->
+        <!--Term Of Use View Controller-->
         <scene sceneID="srM-0J-QC8">
             <objects>
                 <viewController storyboardIdentifier="TermOfUseViewController" automaticallyAdjustsScrollViewInsets="NO" id="Rp1-D7-Bq7" customClass="TermOfUseViewController" sceneMemberID="viewController">
@@ -189,7 +189,6 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="tht-4j-sza"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Terms of use" id="tob-Xh-1Yk"/>
                     <connections>
                         <outlet property="accept_Button" destination="yTq-j7-r5C" id="g2r-6Q-Ilo"/>
                         <outlet property="decline_button" destination="xSF-vk-7oF" id="lrd-Pr-BPW"/>

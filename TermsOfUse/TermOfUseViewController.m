@@ -38,7 +38,7 @@
     
     self.loader_image=[ELR_loaders_ Start_loader:CGRectMake(([[UIScreen mainScreen]bounds].size.width-85)/2,[[UIScreen mainScreen]bounds].size.height/2,85,85)];
     [self.view addSubview:self.loader_image];
-    
+
     
     NSMutableDictionary *dic=[[NSMutableDictionary alloc]init];
     self.arrary_id = [[NSMutableArray alloc] init];
@@ -76,11 +76,13 @@
     [_termsOfUseLabel setText:[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"Terms of use" value:@"" table:nil]];
     [_termsOfUseSubLabel setText:[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"To proceed to the platform you need to accept our new terms of service." value:@"" table:nil]];
     
-    
-
     // Do any additional setup after loading the view from its nib.
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    self.navigationController.navigationBar.hidden = true;
+}
 -(void) webserviceFordate : (NSDictionary *)dicdddd withURL:(NSString *)str_url  {
     
     NSError * error;
@@ -316,7 +318,7 @@
     for (int i= 0; i<_selected_array.count; i++) {
         
         NSInteger path = [[_selected_array objectAtIndex:i] integerValue] ;
-        [selected_string appendString:[NSString stringWithFormat:@"%@", [_array objectAtIndex:path]]];
+        [selected_string appendString:[NSString stringWithFormat:@"%@", [_arrary_id objectAtIndex:path]]];
 
         if (_selected_array.count-1 == i) {
         }else{
@@ -347,7 +349,7 @@
         
         NSInteger path = [[_selected_array objectAtIndex:i] integerValue] ;
         
-        [selected_string appendString:[NSString stringWithFormat:@"%@", [_array objectAtIndex:path]]];
+        [selected_string appendString:[NSString stringWithFormat:@"%@", [_arrary_id objectAtIndex:path]]];
         if (_selected_array.count-1 == i) {
         }else{
             [selected_string appendString:@","];
@@ -384,7 +386,7 @@
     decodedString = [[NSAttributedString alloc] initWithData:stringData
                                                      options:options
                                           documentAttributes:NULL
-                                                       error:NULL];    
+                                                       error:NULL];
     return decodedString.string;
 }
 

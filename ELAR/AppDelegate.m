@@ -104,10 +104,8 @@
         NSObject * object = [prefs objectForKey:@"Default_subdomain"];
         if(object != nil){
             
-            
         }
-        else
-        {
+        else{
             [[NSUserDefaults standardUserDefaults]setValue:@"http://elar.se/" forKey:@"Default_subdomain"];
             [[NSUserDefaults standardUserDefaults]synchronize];
             
@@ -115,18 +113,10 @@
         }
         
         
-
-//                Remember_Me_ViewController *leftMenuViewControllers = [[Remember_Me_ViewController alloc] init];
-//        
-//              nav=[[UINavigationController alloc]initWithRootViewController:leftMenuViewControllers];
-//        
-//                self.window.rootViewController = nav;
-        
-        
         
         Login_ViewController *leftMenuViewControllers = [[Login_ViewController alloc] init];
         
-      nav=[[UINavigationController alloc]initWithRootViewController:leftMenuViewControllers];
+        nav=[[UINavigationController alloc]initWithRootViewController:leftMenuViewControllers];
         
         self.window.rootViewController = nav;
 
@@ -143,8 +133,7 @@
     return YES;
 }
 
--(void) removeEventsFromCalendar
-{
+-(void) removeEventsFromCalendar{
     
     // delete the calendar events
     
@@ -202,6 +191,16 @@
 
 }
 
+-(NSArray *)viewControllers {
+    NSArray *viewControllers = [self.window subviews];
+    if (viewControllers != nil && viewControllers.count > 0) {
+        NSMutableArray *array = [NSMutableArray arrayWithArray:viewControllers];
+        [array removeObjectAtIndex:0];
+        return array;
+    }
+    return viewControllers;
+}
+
 -(void)LOg_in
 {
     
@@ -209,20 +208,15 @@
 //    for (id obj in subViewArray)
 //    {
 //        [obj removeFromSuperview];
-//        
+//
 //    }
-    
+    [self mStartIndicater];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
     
     NSLog(@"%@",[[[NSUserDefaults standardUserDefaults]valueForKey:@"user_type"]capitalizedString]);
-    
-    
 
-    
      if ([[[NSUserDefaults standardUserDefaults]valueForKey:@"user_type"]isEqualToString:@"parent"] || [[[NSUserDefaults standardUserDefaults]valueForKey:@"user_type"]isEqualToString:@"förälder"]) {
-         
-         
         leftMenuChildren_LIST = [[Children_LIST alloc] init];
         
         nav=[[UINavigationController alloc]initWithRootViewController:leftMenuChildren_LIST];
@@ -248,9 +242,9 @@
                                                     rightMenuViewController:obj_SideMenuViewController];
     self.window.rootViewController = container;
     self.window.backgroundColor = [UIColor whiteColor];
-    
-    
+
     [self.window makeKeyAndVisible];
+    [self mStopIndicater];
 
 
 }

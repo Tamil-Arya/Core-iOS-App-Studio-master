@@ -168,7 +168,7 @@
                         
                         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"TermOfUseViewController" bundle:nil];
                         TermOfUseViewController *myNewVC = (TermOfUseViewController *)[storyboard instantiateViewControllerWithIdentifier:@"TermOfUseViewController"];
-                        [self.navigationController pushViewController:myNewVC animated:YES];                        
+                        [self presentViewController:myNewVC animated:YES completion:nil];
                     }else {
                         appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
                         [appDelegate LOg_in];
