@@ -619,11 +619,23 @@
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    UIViewController *topVc = [self topMostController];
-    if (![topVc isKindOfClass:[Login_ViewController class]]) {
-        [self mStartIndicater];
-        [self webServiceCallForTermsOfConditions];
+   
+    
+    if ([[ReachabilityManager sharedManager]isReachable]) {
+        UIViewController *topVc = [self topMostController];
+        if (![topVc isKindOfClass:[Login_ViewController class]]) {
+            [self mStartIndicater];
+            [self webServiceCallForTermsOfConditions];
+        }
+    }else{
+        [self mStopIndicater];
+
+        [[ReachabilityManager sharedManager]showAlertForNoInternetNotification];
     }
+    
+    
+    
+   
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

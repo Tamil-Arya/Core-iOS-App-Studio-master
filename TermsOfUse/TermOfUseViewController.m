@@ -13,6 +13,7 @@
 #import "TermCell.h"
 #import "Remember_Me_ViewController.h"
 #import "ELR_loaders_.h"
+#import "ReachabilityManager.h"
 
 #define TERM_OF_CONDITION_URL @"https://dev.elar.se/mobile_api/get_userterms_formobile"
 
@@ -64,7 +65,14 @@
     [dicdddd setValue:@"ios" forKey:@"platform"];
     
     self.string_url = @"https://dev.elar.se/mobile_api/get_userterms_formobile";
-    [self webserviceFordate:dicdddd withURL:self.string_url];
+    
+    if ([[ReachabilityManager sharedManager]isReachable]) {
+        [self webserviceFordate:dicdddd withURL:self.string_url];
+
+    }else{
+        [[ReachabilityManager sharedManager]showAlertForNoInternetNotification];
+    }
+    
     [self.tableView reloadData];
     
     [_accept_Button setTitle:[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"Accept" value:@"" table:nil] forState:UIControlStateNormal];
