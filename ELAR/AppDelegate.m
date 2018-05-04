@@ -515,7 +515,8 @@
 
 -(void)webServiceCallForTermsOfConditions {
     
-    
+    [self mStartIndicater];
+
     NSMutableDictionary *dicdddd=[[NSMutableDictionary alloc]init];
     [dicdddd setValue:@"H67jdS7wwfh" forKey:@"securityKey"];
     [dicdddd setValue:[[NSUserDefaults standardUserDefaults]valueForKey:@"user_id"] forKey:@"loginUserID"];
@@ -568,10 +569,15 @@
                 }
                 
             });
+        
         }
+        [self mStopIndicater];
+
     }];
     
     [postDataTask resume];
+    [self mStopIndicater];
+
     
 }
 
@@ -624,7 +630,6 @@
     if ([[ReachabilityManager sharedManager]isReachable]) {
         UIViewController *topVc = [self topMostController];
         if (![topVc isKindOfClass:[Login_ViewController class]]) {
-            [self mStartIndicater];
             [self webServiceCallForTermsOfConditions];
         }
     }else{

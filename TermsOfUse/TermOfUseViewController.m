@@ -163,7 +163,7 @@
 
         [self.descriptionArray addObject:[self replaceCustomNameByValidString:[dic objectForKey:@"term_description"] withValidString:self.customer_name]];
         [self.arrary_id addObject:[dic objectForKey:@"id"]];
-        [self.array addObject:[[dic objectForKey:@"term_title"]capitalizedString]];
+        [self.array addObject:[dic objectForKey:@"term_title"]];
     }
     [self.tableView reloadData];
     [self mStopIndicater];

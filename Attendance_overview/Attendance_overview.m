@@ -229,6 +229,38 @@
 #pragma mark CallTheServer_CallTheServer_Attendance_overview_API Method
 #pragma mark - -*********************
 
+-(BOOL)CallTheServer_ForVerifyPassword{
+ 
+    BOOL isChanged = NO;
+    
+    if ([API connectedToInternet]==YES) {
+        
+        //------------ Call API for signup With Post Method --------------//
+        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy/MM/dd"];
+        NSDate *date = [dateFormatter dateFromString: date_value];
+        dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        NSString *date_correct_format = [dateFormatter stringFromDate:date];
+        
+        NSString *responseString = [API makeCallPostData_ALL:[NSString stringWithFormat:@"securityKey=%@&authentication_token=%@&date=%@&language=%@",@"H67jdS7wwfh",[[NSUserDefaults standardUserDefaults]valueForKey:@"authentication_token"],date_correct_format,[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"]]:[NSString stringWithFormat:@"%@retrivals/get_attendence_overview",[Utilities API_link_url_subDomain]]];
+        
+        
+        //   [NSString stringWithFormat:@"%@signup_step2",[Utility API_link_url]]
+        
+        NSDictionary *responseDict = [responseString JSONValue];
+        dict = [[NSMutableDictionary alloc ]  initWithDictionary:responseDict];
+        
+        if([[dict valueForKey:@"message"] isEqualToString:[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"Authentication Failed" value:@"" table:nil]]){
+
+            isChanged = YES;
+            
+        }
+    }
+    return isChanged;
+        
+}
 
 -(void)CallTheServer_Attendance_overview_API
 {

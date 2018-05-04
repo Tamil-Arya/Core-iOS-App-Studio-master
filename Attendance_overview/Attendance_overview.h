@@ -10,6 +10,10 @@
 #import "MFSideMenu.h"
 #import "ELR_loaders_.h"
 #import "NSString+HTML.h"
+@protocol Attendance_overview_ViewControllerDelegate
+@optional
+-(BOOL)CallTheServer_ForVerifyPassword;
+@end
 @interface Attendance_overview : UIViewController<UITableViewDataSource,UITableViewDelegate>
 {
     
@@ -31,5 +35,6 @@
     
     
 }
+-(BOOL)CallTheServer_ForVerifyPassword;
 @property (strong, nonatomic)  NSString *date_value;
 @end
