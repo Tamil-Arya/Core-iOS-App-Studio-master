@@ -164,6 +164,10 @@
     [self presentViewController:HomeNavController animated:YES completion:nil];
     
 }
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    [self Navigation_bar];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
