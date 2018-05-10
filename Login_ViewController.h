@@ -10,8 +10,9 @@
 #import "NSString+HTML.h"
 #import "NSString+StringManipulation.h"
 #import "TwoFactorLoginView.h"
+@import GoogleSignIn;
 
-@interface Login_ViewController : UIViewController<UITextFieldDelegate,UIPickerViewDataSource,UIPickerViewDelegate,NSURLSessionTaskDelegate>
+@interface Login_ViewController : UIViewController<UITextFieldDelegate,UIPickerViewDataSource,UIPickerViewDelegate,NSURLSessionTaskDelegate,GIDSignInUIDelegate>
 {
     
     UIToolbar *toolBar ;
@@ -26,6 +27,8 @@
     UIImageView *Pass_WRD_img;
     
     UIButton *BTN_sign_In;
+    GIDSignInButton *BTM_sign_In_GMAIL;
+
     UIButton *BTN_Forgot;
     
     UILabel *background_language;

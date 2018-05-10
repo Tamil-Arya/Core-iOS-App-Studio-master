@@ -24,7 +24,6 @@
 #import "LogoutManager.h"
 #import "TermOfUseViewController.h"
 
-
 @interface Login_ViewController ()
 {
     NSArray *filtered ;
@@ -57,6 +56,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [GIDSignIn sharedInstance].uiDelegate = self;
+
     filtered = [[NSArray alloc]init];
     
     languageStringFromUserDefaults = [[NSUserDefaults standardUserDefaults] objectForKey:@"langugae"];
@@ -323,6 +324,12 @@
     [self.view addSubview:BTN_sign_In];
     
     
+   
+    //Google login button
+    BTM_sign_In_GMAIL =[[GIDSignInButton alloc] initWithFrame:CGRectMake(00,Schools_TXT.frame.origin.y+80,self.view.frame.size.width, 50)];
+    [self.view addSubview:BTM_sign_In_GMAIL];
+    
+    
     
 //     //------------ back_ground_pickerview view --------------//
 //    
@@ -366,6 +373,41 @@
   
    
    }
+
+//----------------------------------------------------------------------------
+
+#pragma - GOOGLE GMAIL LOGIN Methods
+
+// Implement these methods only if the GIDSignInUIDelegate is not a subclass of
+// UIViewController.
+
+// Stop the UIActivityIndicatorView animation that was started when the user
+// pressed the Sign In button
+- (void)signInWillDispatch:(GIDSignIn *)signIn error:(NSError *)error {
+    //[myActivityIndicator stopAnimating];
+}
+
+// Present a view that prompts the user to sign in with Google
+- (void)signIn:(GIDSignIn *)signIn
+presentViewController:(UIViewController *)viewController {
+    [self presentViewController:viewController animated:YES completion:nil];
+}
+
+// Dismiss the "Sign in with Google" view
+- (void)signIn:(GIDSignIn *)signIn
+dismissViewController:(UIViewController *)viewController {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+- (IBAction)didTapSignOut:(id)sender {
+    [[GIDSignIn sharedInstance] signOut];
+}
+
+//----------------------------------------------------------------------------
+
 
 
 -(void) addingNewObjectForPickerView
@@ -1950,9 +1992,4 @@ customerListServicecount = 0;
     return YES;
 }
 
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    
-}
 @end

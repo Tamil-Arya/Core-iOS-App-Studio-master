@@ -6,6 +6,7 @@
 pod 'MWPhotoBrowser', '~> 2.1'
 pod 'Fabric'
 pod 'Crashlytics'
+pod 'GoogleSignIn'
 
 target 'Smart Classroom Manager' do
 

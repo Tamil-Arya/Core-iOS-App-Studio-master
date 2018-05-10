@@ -30,7 +30,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TermsOfUse/TermOfUseViewController.m"
-            timestampString = "547099501.583299"
+            timestampString = "547617875.226519"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "356"
@@ -46,7 +46,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TermsOfUse/TermOfUseViewController.m"
-            timestampString = "547099501.584169"
+            timestampString = "547617875.227406"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "360"
@@ -94,12 +94,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ELAR/AppDelegate.m"
-            timestampString = "547099501.585156"
+            timestampString = "547617875.2282979"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "518"
-            endingLineNumber = "518"
+            startingLineNumber = "594"
+            endingLineNumber = "594"
             landmarkName = "-webServiceCallForTermsOfConditions"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ELAR/AppDelegate.m"
+            timestampString = "547617875.2286839"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "-signIn:didSignInForUser:withError:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

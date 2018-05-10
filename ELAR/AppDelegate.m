@@ -39,11 +39,87 @@
 @implementation AppDelegate
 @synthesize window;
 
+- (BOOL)application:(UIApplication *)app
+            openURL:(NSURL *)url
+            options:(NSDictionary<NSString *, id> *)options {
+    return [[GIDSignIn sharedInstance] handleURL:url
+                               sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
+                                      annotation:options[UIApplicationOpenURLOptionsAnnotationKey]];
+}
 
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    return [[GIDSignIn sharedInstance] handleURL:url
+                               sourceApplication:sourceApplication
+                                      annotation:annotation];
+}
+
+
+- (void)signIn:(GIDSignIn *)signIn
+didSignInForUser:(GIDGoogleUser *)user
+     withError:(NSError *)error {
+    // Perform any operations on signed in user here.
+    NSString *userId = user.userID;                  // For client-side use only!
+    NSString *idToken = user.authentication.idToken; // Safe to send to the server
+    NSString *fullName = user.profile.name;
+    NSString *givenName = user.profile.givenName;
+    NSString *familyName = user.profile.familyName;
+    NSString *email = user.profile.email;
+    
+    
+    
+    NSLog(@"Successfully logged In /n : %@",user.profile.email);
+    
+    
+//
+//    NSString *signinEndpoint = @"http://dev.elar.se/mobile_api/login_using_email";
+//    NSDictionary *params = @{@"idtoken": idToken};
+//
+//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:signinEndpoint];
+//    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+//    [request setHTTPMethod:@"POST"];
+//    [request setHTTPBody:[self httpBodyForParamsDictionary:params]];
+//
+//    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+//    [NSURLConnection sendAsynchronousRequest:request
+//                                       queue:queue
+//                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+//                               if (error) {
+//                                   NSLog(@"Error: %@", error.localizedDescription);
+//                               } else {
+//                                   NSLog(@"Signed in as %@", data.bytes);
+//                               }
+//                           }];
+    
+    
+    
+    // ...
+}
+- (NSData *)httpBodyForParamsDictionary:(NSDictionary *)paramDictionary
+{
+    
+    NSError *error =nil;
+    return  [NSJSONSerialization dataWithJSONObject:paramDictionary
+                                            options:0
+                                              error:&error];
+}
+- (void)signIn:(GIDSignIn *)signIn
+didDisconnectWithUser:(GIDGoogleUser *)user
+     withError:(NSError *)error {
+    // Perform any operations when the user disconnects from app here.
+    // ...
+}
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    
+    [GIDSignIn sharedInstance].clientID = @"194598355657-dqqrmtvgcvoudldp4nicaokb16tar2jc.apps.googleusercontent.com";
+    
+    [GIDSignIn sharedInstance].delegate = self;
     
     [ReachabilityManager sharedManager];
 

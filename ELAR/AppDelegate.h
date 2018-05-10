@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "Users_panel_ViewController.h"
 #import "Children_LIST.h"
-
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@import GoogleSignIn;
+@interface AppDelegate : UIResponder <UIApplicationDelegate, GIDSignInDelegate>
 {
     Users_panel_ViewController *leftMenuViewController;
     Children_LIST *leftMenuChildren_LIST;
@@ -22,6 +22,6 @@
 -(void)LOg_Out;
 -(void) removeEventsFromCalendar;
 
-
 @end
+
 

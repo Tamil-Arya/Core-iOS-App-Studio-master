@@ -289,6 +289,8 @@
 		8BD83C681D9168FC004D3961 /* replace.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BD83C621D9168FC004D3961 /* replace.png */; };
 		9723C2D7205ECDEC004EB2A2 /* ReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9723C2D6205ECDEC004EB2A2 /* ReachabilityManager.m */; };
 		97293AB320916D19006C9DC6 /* edit-document.png in Resources */ = {isa = PBXBuildFile; fileRef = 97293AB220916D18006C9DC6 /* edit-document.png */; };
+		97A091C920A37611000B0CE9 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97A091C820A37611000B0CE9 /* SafariServices.framework */; };
+		97A091CB20A37616000B0CE9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97A091CA20A37616000B0CE9 /* SystemConfiguration.framework */; };
 		97B5623E2073EF8B0057B2AD /* LogoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 97B5623D2073EF8B0057B2AD /* LogoutManager.m */; };
 		97EA2428209151CB0038D99F /* Login_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97EA2427209151CB0038D99F /* Login_ViewController.m */; };
 		97EA242A20915F190038D99F /* TermOfUseViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97EA242920915F190038D99F /* TermOfUseViewController.storyboard */; };
@@ -725,6 +727,8 @@
 		9723C2D5205ECDEC004EB2A2 /* ReachabilityManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReachabilityManager.h; sourceTree = "<group>"; };
 		9723C2D6205ECDEC004EB2A2 /* ReachabilityManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReachabilityManager.m; sourceTree = "<group>"; };
 		97293AB220916D18006C9DC6 /* edit-document.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "edit-document.png"; sourceTree = "<group>"; };
+		97A091C820A37611000B0CE9 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
+		97A091CA20A37616000B0CE9 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		97B5623C2073EF8B0057B2AD /* LogoutManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogoutManager.h; sourceTree = "<group>"; };
 		97B5623D2073EF8B0057B2AD /* LogoutManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogoutManager.m; sourceTree = "<group>"; };
 		97EA2426209151CA0038D99F /* Login_ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Login_ViewController.h; sourceTree = "<group>"; };
@@ -738,6 +742,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97A091CB20A37616000B0CE9 /* SystemConfiguration.framework in Frameworks */,
+				97A091C920A37611000B0CE9 /* SafariServices.framework in Frameworks */,
 				810C4DF21C7C30D900C9F1A1 /* CoreGraphics.framework in Frameworks */,
 				810C4DF01C7C30CF00C9F1A1 /* QuartzCore.framework in Frameworks */,
 				8140086D1C0EE9CE004E5350 /* AssetsLibrary.framework in Frameworks */,
@@ -2239,6 +2245,8 @@
 		99577AA7E88A6BACA21286B4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				97A091CA20A37616000B0CE9 /* SystemConfiguration.framework */,
+				97A091C820A37611000B0CE9 /* SafariServices.framework */,
 				5758E43277B1F23F1929A52F /* libPods-Smart Classroom Manager.a */,
 			);
 			name = Frameworks;
@@ -2256,7 +2264,6 @@
 				81ED8F201BE0F37900F89A2B /* Frameworks */,
 				81ED8F211BE0F37900F89A2B /* Resources */,
 				8B96C7921D88092500E7FFD4 /* ShellScript */,
-				5B313E7A91489AC3A2CB16F0 /* [CP] Embed Pods Frameworks */,
 				6FE3BCD2400634AA6FA8AD9C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -2470,28 +2477,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Smart Classroom Manager-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		5B313E7A91489AC3A2CB16F0 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Smart Classroom Manager/Pods-Smart Classroom Manager-frameworks.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6FE3BCD2400634AA6FA8AD9C /* [CP] Copy Pods Resources */ = {
@@ -2500,9 +2495,18 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Smart Classroom Manager/Pods-Smart Classroom Manager-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/CalendarLib/CalendarLib.bundle",
+				"${PODS_ROOT}/GTMOAuth2/Source/Touch/GTMOAuth2ViewTouch.xib",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/MWPhotoBrowser/MWPhotoBrowser.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CalendarLib.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GTMOAuth2ViewTouch.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MWPhotoBrowser.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
