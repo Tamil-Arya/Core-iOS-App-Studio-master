@@ -12,8 +12,11 @@
 #import "TwoFactorLoginView.h"
 @import GoogleSignIn;
 
-@interface Login_ViewController : UIViewController<UITextFieldDelegate,UIPickerViewDataSource,UIPickerViewDelegate,NSURLSessionTaskDelegate,GIDSignInUIDelegate>
-{
+@protocol Login_ViewControllerDelegate
+-(void) webserviceForLogin :(BOOL)isGoogleLogin withGoogleResponseDic:(NSMutableDictionary *)loginResponseDic;
+@end
+
+@interface Login_ViewController : UIViewController<UITextFieldDelegate,UIPickerViewDataSource,UIPickerViewDelegate,NSURLSessionTaskDelegate,GIDSignInUIDelegate,Login_ViewControllerDelegate>{
     
     UIToolbar *toolBar ;
     UIImageView *Application_logo;

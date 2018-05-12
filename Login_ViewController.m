@@ -374,40 +374,6 @@
    
    }
 
-//----------------------------------------------------------------------------
-
-#pragma - GOOGLE GMAIL LOGIN Methods
-
-// Implement these methods only if the GIDSignInUIDelegate is not a subclass of
-// UIViewController.
-
-// Stop the UIActivityIndicatorView animation that was started when the user
-// pressed the Sign In button
-- (void)signInWillDispatch:(GIDSignIn *)signIn error:(NSError *)error {
-    //[myActivityIndicator stopAnimating];
-}
-
-// Present a view that prompts the user to sign in with Google
-- (void)signIn:(GIDSignIn *)signIn
-presentViewController:(UIViewController *)viewController {
-    [self presentViewController:viewController animated:YES completion:nil];
-}
-
-// Dismiss the "Sign in with Google" view
-- (void)signIn:(GIDSignIn *)signIn
-dismissViewController:(UIViewController *)viewController {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-- (IBAction)didTapSignOut:(id)sender {
-    [[GIDSignIn sharedInstance] signOut];
-}
-
-//----------------------------------------------------------------------------
-
 
 
 -(void) addingNewObjectForPickerView
@@ -1139,10 +1105,7 @@ customerListServicecount = 0;
     {
         [self mStartIndicater];
         
-        [self performSelector:@selector(webserviceForLogin) withObject:nil afterDelay:0.5];
-        
-      
-
+        [self performSelector:@selector(webserviceForLogin:withGoogleResponseDic:) withObject:nil afterDelay:0.5];
         
 
     }
@@ -1222,14 +1185,25 @@ customerListServicecount = 0;
 #pragma mark CallTheServer_Login_API Method
 #pragma mark - -*********************
 
--(void) webserviceForLogin  {
+-(void) webserviceForLogin :(BOOL)isGoogleLogin withGoogleResponseDic:(NSMutableDictionary *)loginResponseDic {
     
-    NSString *requestString = [NSString stringWithFormat:@"securityKey=%@&username=%@&password=%@&device_token_app=%@&user_type_app=%@&language=%@",@"H67jdS7wwfh",email_TXT.text,Passwprd_TXT.text,[[NSUserDefaults standardUserDefaults]valueForKey:@"device_token_app"],[[NSUserDefaults standardUserDefaults]valueForKey:@"user_type_app"],[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"]];
+    NSString *requestString;
     
+    if(isGoogleLogin){
+        
+            requestString = [NSString stringWithFormat:@"securityKey=%@&username=%@&password=%@&device_token_app=%@&user_type_app=%@&language=%@&login_access_by_google=1",@"H67jdS7wwfh",[loginResponseDic valueForKey:@"username"],[loginResponseDic valueForKey:@"password"],[[NSUserDefaults standardUserDefaults]valueForKey:@"device_token_app"],[[NSUserDefaults standardUserDefaults]valueForKey:@"user_type_app"],[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"]];
+            [[NSUserDefaults standardUserDefaults]setObject:[loginResponseDic valueForKey:@"username"] forKey:@"emailid"];
+            [[NSUserDefaults standardUserDefaults]setObject:[loginResponseDic valueForKey:@"password"] forKey:@"password"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            
+        
+    }else{
+        requestString = [NSString stringWithFormat:@"securityKey=%@&username=%@&password=%@&device_token_app=%@&user_type_app=%@&language=%@",@"H67jdS7wwfh",email_TXT.text,Passwprd_TXT.text,[[NSUserDefaults standardUserDefaults]valueForKey:@"device_token_app"],[[NSUserDefaults standardUserDefaults]valueForKey:@"user_type_app"],[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"]];
+        [[NSUserDefaults standardUserDefaults]setObject:email_TXT.text forKey:@"emailid"];
+        [[NSUserDefaults standardUserDefaults]setObject:Passwprd_TXT.text forKey:@"password"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
     
-    [[NSUserDefaults standardUserDefaults]setObject:email_TXT.text forKey:@"emailid"];
-    [[NSUserDefaults standardUserDefaults]setObject:Passwprd_TXT.text forKey:@"password"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
     
  //   NSLog(@"email===>%@ password===> %@",[[NSUserDefaults standardUserDefaults]valueForKey:@"emailid"],[[NSUserDefaults standardUserDefaults]valueForKey:@"password"]);
     
@@ -1518,19 +1492,7 @@ customerListServicecount = 0;
 
 -(void) responseFromSub_domain
 {
-    NSLog(@"json %@",arrayForCustomers);
-    NSLog(@"json %d",[arrayForCustomers count]);
 
-//    NSDictionary *responseDict = json;
-//   
-//    dict_School = [[NSMutableDictionary alloc ]  initWithDictionary:responseDict];
-    
-//    if ([[dict_School valueForKey:@"status"] isEqualToString:@"false"]) {
-//        alert = [[UIAlertView alloc] initWithTitle:[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"An error has occurred" value:@"" table:nil] message:[dict_School valueForKey:@"message"] delegate:self cancelButtonTitle:nil otherButtonTitles:[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"Ok" value:@"" table:nil], nil];
-//        [alert show];
-//    }
-//    else
-//    {
         if ([[[NSUserDefaults standardUserDefaults]valueForKey:@"Default_subdomain"]isEqualToString:@"http://elar.se/"]) {
             
             [[NSUserDefaults standardUserDefaults]setValue:@"http://elar.se/" forKey:@"Default_subdomain"];
@@ -1634,8 +1596,6 @@ customerListServicecount = 0;
     else
     {
         
-        
-        
         alert = [[UIAlertView alloc] initWithTitle:[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"Error" value:@"" table:nil] message:[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"Not connected to the internet" value:@"" table:nil] delegate:self cancelButtonTitle:nil otherButtonTitles:[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"Ok" value:@"" table:nil], nil];
         [alert show];
     }
@@ -1651,12 +1611,7 @@ customerListServicecount = 0;
 
 -(void)mStartIndicater
 {
-   
-//    loader_image=[ELR_loaders_ Start_loader:CGRectMake(([[UIScreen mainScreen]bounds].size.width-85)/2,[[UIScreen mainScreen]bounds].size.height/2,85,85)];
-//    [self.view addSubview:loader_image];
     [loader_image setHidden:NO];
-   
-    
 }
 
 #pragma mark - -*********************
@@ -1666,9 +1621,6 @@ customerListServicecount = 0;
 -(void)mStopIndicater
 {
      [loader_image setHidden:YES];
-//    [loader_image removeFromSuperview];
-    
-    
     
 }
 
@@ -1676,14 +1628,7 @@ customerListServicecount = 0;
 #pragma mark TextField Delegate
 #pragma mark - -*********************
 
--(void)textFieldDidEndEditing:(UITextField *)textField
-{
-//    NSArray * arrayForCopyOfDemoArray = [Copy_Of_Demo_ARR mutableCopy];
-//    NSArray * arrayForCopyOfCustomerArray = [copy_Of_Array_Of_Customers mutableCopy];
-//    
-//    
-//    Demo_ARR = [NSMutableArray arrayWithArray:arrayForCopyOfDemoArray];
-//    arrayOfCustomers = [NSMutableArray arrayWithArray:arrayForCopyOfCustomerArray];
+-(void)textFieldDidEndEditing:(UITextField *)textField{
     
     if (email_TXT .text.length != 0) {
         if (Passwprd_TXT.text.length != 0) {
@@ -1741,10 +1686,7 @@ customerListServicecount = 0;
     if (textField.tag == 003) {
         transparentView.hidden = YES;
     }
-    
-    
-//    NSLog(@"array %@",Copy_Of_Demo_ARR);
-//    NSLog(@"copy array %@",Demo_ARR);
+
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField
@@ -1756,17 +1698,8 @@ customerListServicecount = 0;
         [email_TXT resignFirstResponder];
     }
 }
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
-{
-//    NSLog(@"array %@",Copy_Of_Demo_ARR);
-//    NSLog(@"copy array %@",Demo_ARR);
-    
-    NSLog(@"arrayForCustomers begin%lu",(unsigned long)[arrayForCustomers count]);
-    NSLog(@"copyarrayForCustomers begin%lu",(unsigned long)[copy_Of_Array_Of_Customers count]);
-
-    
-    NSLog(@"%d",textField.tag);
-    if (textField.tag==003) { // school text
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+        if (textField.tag==003) { // school text
         transparentView.hidden = NO;
         [textField resignFirstResponder];
         [Passwprd_TXT resignFirstResponder];
@@ -1775,45 +1708,6 @@ customerListServicecount = 0;
         NSArray * sampleArray = [arrayForCustomers mutableCopy];
         copy_Of_Array_Of_Customers = [NSMutableArray arrayWithArray:sampleArray];
         [arrayForCustomers removeAllObjects];
-//        search_TXT.hidden = NO;
-//       // if ([API connectedToInternet]==YES) {
-//            
-//            [loader_image removeFromSuperview];
-//
-//        [pPickerState setHidden:YES];
-//        
-//        if(![arrayOfCustomers count]==0)
-//        {
-//          
-//       
-//        pickre_STR=nil;
-//         canPicker_Array=YES;
-//         [pPickerState selectRow:0 inComponent:0 animated:YES];
-//        
-//        [Demo_ARR removeAllObjects];
-//         [Copy_Of_Demo_ARR removeAllObjects];
-//            [copy_Of_Array_Of_Customers removeAllObjects];
-//        
-//        for (NSMutableDictionary* key in arrayOfCustomers) {
-//            
-//            NSLog(@"%@",key);
-//            
-//            
-//            [Demo_ARR addObject:[NSString stringWithFormat:@"%@",[key valueForKey:@"name"]]];
-//            [Copy_Of_Demo_ARR addObject:[NSString stringWithFormat:@"%@",[key valueForKey:@"name"]]];
-//            [copy_Of_Array_Of_Customers addObject:key];
-//        }
-//            
-////            [arrayOfCustomers removeAllObjects];
-//        [pPickerState reloadAllComponents];
-//        
-//        
-//        [Schools_TXT resignFirstResponder];
-//         [email_TXT resignFirstResponder];
-//         [Passwprd_TXT resignFirstResponder];
-//        [pPickerState reloadAllComponents];
-//
-        
         
         [self.view bringSubviewToFront:backgroundViewforCustomerPicker];
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -1825,25 +1719,6 @@ customerListServicecount = 0;
             
             [UIView commitAnimations];
         });
-
-//        }
-//    
-//        else
-//        {
-//            [self mStartIndicater];
-//            
-//            [self performSelector:@selector(sub_domains_open_picker) withObject:nil afterDelay:0.5];
-//        }
-//             }
-//        else
-//        {
-//            
-//            alert = [[UIAlertView alloc] initWithTitle:[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"Error" value:@"" table:nil] message:[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"Not connected to the internet" value:@"" table:nil] delegate:self cancelButtonTitle:nil otherButtonTitles:[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"] ofType:@"lproj"]] localizedStringForKey:@"Ok" value:@"" table:nil], nil];
-//            [alert show];
-//
-//        }
-       
-
         return NO;
     
     }
@@ -1873,9 +1748,6 @@ customerListServicecount = 0;
          back_ground_pickerview.frame=CGRectMake(0,self.view.frame.size.height+200, self.view.frame.size.width, self.view.frame.size.height);
          return YES;
     }
-   
-    NSLog(@"array %@",Copy_Of_Demo_ARR);
-    NSLog(@"copy array %@",Demo_ARR);
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -1900,14 +1772,9 @@ customerListServicecount = 0;
     return found;
 }
 
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-{
-//    NSMutableArray * copyOfArrayOfCustomers = [[NSMutableArray alloc]init];
-    
-    
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+
         if (textField.tag == 004) {
-        NSLog(@"range %lu",(unsigned long)range.length);
-        NSLog(@"string %@",string);
         if (range.length == 1) {
             [searchString replaceCharactersInRange:NSMakeRange(searchString.length-1, 1) withString:@""];
         }
@@ -1916,17 +1783,11 @@ customerListServicecount = 0;
             [searchString appendString:[NSString stringWithFormat:@"%@",string]];
         }
  
-       NSLog(@"copy_Of_Array_Of_Customers %d",copy_Of_Array_Of_Customers.count);
             if (searchString.length > 2) {
             NSIndexSet *indices = [copy_Of_Array_Of_Customers indexesOfObjectsPassingTest:^(id obj, NSUInteger idx, BOOL *stop) {
-//                 NSLog(@"%@",obj);
                 return [[[obj objectForKey:@"name"] lowercaseString] containsString:[searchString lowercaseString]];
             }];
             filtered = [copy_Of_Array_Of_Customers objectsAtIndexes:indices];
-    
-            
-            NSLog(@"filtered %@",filtered);
-//                arrayOfCustomers = [NSMutableArray arrayWithArray:filtered];
                 [pickerViewForCustomers reloadAllComponents];
                 [pickerViewForCustomers setHidden:NO];
             }
@@ -1934,62 +1795,19 @@ customerListServicecount = 0;
             {
                 [pickerViewForCustomers setHidden:YES];
             }
-//    if (textField.tag == 004) {
-//    NSLog(@"range %lu",(unsigned long)range.length);
-//    NSLog(@"string %@",string);
-//    if (range.length == 1) {
-//        [searchString replaceCharactersInRange:NSMakeRange(searchString.length-1, 1) withString:@""];
-//    }
-//    else
-//    {
-//        [searchString appendString:[NSString stringWithFormat:@"%@",string]];
-//    }
-//        if (searchString.length > 2) {
-////        [Demo_ARR removeAllObjects];
-////        [arrayOfCustomers  removeAllObjects];
-////        for (NSString * stringWithSchool in Copy_Of_Demo_ARR) {
-//            [arrayForCustomers removeAllObjects];
-//        for (int i = 0 ; i<[copy_Of_Array_Of_Customers count]; i++) {
-//           NSString * stringWithSchool = [[copy_Of_Array_Of_Customers objectAtIndex:i] objectForKey:@"name"];
-////            if (searchString.length == 0) {
-//////                [Demo_ARR addObject:stringWithSchool];
-////                [arrayForCustomers addObject:[copy_Of_Array_Of_Customers objectAtIndex:i]];
-////            }
-////            else
-////            {
-//                NSRange textRange = [[stringWithSchool lowercaseString] rangeOfString:[searchString lowercaseString]];
-//                
-//                if(textRange.location != NSNotFound)
-//                {
-//                   
-////                     [Demo_ARR addObject:stringWithSchool];
-//                    [arrayForCustomers addObject:[copy_Of_Array_Of_Customers objectAtIndex:i]];
-//                    //Does contain the substring
-//                }
-////            if ([stringWithSchool containsString:searchString]) {
-////                [Demo_ARR addObject:stringWithSchool];
-////            }
-////            }
-//            if(arrayForCustomers.count == 0 )
-//            {
-//                NSArray * sampleArray = [copy_Of_Array_Of_Customers mutableCopy];
-//                arrayForCustomers = [NSMutableArray arrayWithArray:sampleArray];
-////                [copy_Of_Array_Of_Customers removeAllObjects];
-//
-//            }
-//                
-//        }
-//            [pickerViewForCustomers setHidden:NO];
-//        [pickerViewForCustomers reloadAllComponents];
-//    NSLog(@"Demo_ARR %@",arrayForCustomers);
-//        }
-//        else
-//        {
-//            [pickerViewForCustomers setHidden:YES];
-//        }
-//    //[self msgTypeforProductSearch:searchString];
+
     }
     return YES;
 }
+
+
+- (IBAction)didTapSignOut:(id)sender {
+    [[GIDSignIn sharedInstance] signOut];
+}
+
+//----------------------------------------------------------------------------
+
+
+
 
 @end

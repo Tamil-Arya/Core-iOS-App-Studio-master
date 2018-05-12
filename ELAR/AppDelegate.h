@@ -15,9 +15,11 @@
     Users_panel_ViewController *leftMenuViewController;
     Children_LIST *leftMenuChildren_LIST;
     UINavigationController *nav;
+    
 }
 
 @property (strong, nonatomic) UIWindow *window;
+@property (nonatomic) id delegate;
 -(void)LOg_in;
 -(void)LOg_Out;
 -(void) removeEventsFromCalendar;

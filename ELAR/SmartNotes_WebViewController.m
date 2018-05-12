@@ -180,7 +180,7 @@ static int WEBSERVICE_TO_GET_Smart_Notes_URL_TAG = 201;
     CGSize size1;
     
     if ([[[UIDevice currentDevice] systemVersion] floatValue]>=11){
-        size1 = CGSizeMake(20, 20);
+        size1 = CGSizeMake(30, 30);
     } else {
         size1 = CGSizeMake(30, 30);
     }
@@ -189,7 +189,7 @@ static int WEBSERVICE_TO_GET_Smart_Notes_URL_TAG = 201;
     
     [button setBackgroundImage:butImage forState:UIControlStateNormal];
     [button addTarget:self action:@selector(backButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    button.frame = CGRectMake(0, 0, 20, 20);
+    button.frame = CGRectMake(0, 0, 30, 30);
     [button setTitleColor:[UIColor colorWithRed:101.0f/255.0f green:101.0f/255.0f blue:101.0f/255.0f alpha:1.0] forState:UIControlStateNormal];
     
     

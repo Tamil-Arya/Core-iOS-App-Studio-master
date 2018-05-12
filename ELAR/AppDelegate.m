@@ -61,42 +61,41 @@
 - (void)signIn:(GIDSignIn *)signIn
 didSignInForUser:(GIDGoogleUser *)user
      withError:(NSError *)error {
-    // Perform any operations on signed in user here.
-    NSString *userId = user.userID;                  // For client-side use only!
-    NSString *idToken = user.authentication.idToken; // Safe to send to the server
-    NSString *fullName = user.profile.name;
-    NSString *givenName = user.profile.givenName;
-    NSString *familyName = user.profile.familyName;
-    NSString *email = user.profile.email;
+
+    
+    Login_ViewController *instanceOfLoginClass = [[Login_ViewController alloc] init];
+    self.delegate = instanceOfLoginClass;
+
+//    NSString *signinEndpoint = [NSString stringWithFormat:@"%@mobile_api/login_using_email",[Utilities API_link_url_subDomain]];
+    NSString *signinEndpoint = [NSString stringWithFormat:@"http://dev.elar.se/mobile_api/login_using_email"];
+
+    NSDictionary *params =@{@"securityKey":@"H67jdS7wwfh",@"google_user_email":user.profile.email};
+
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:signinEndpoint]];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:[self httpBodyForParamsDictionary:params]];
+
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:queue
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                               if (error) {
+                                   NSLog(@"Error: %@", error.localizedDescription);
+                               } else {
+                                   NSMutableDictionary *json =[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+                                   NSLog(@"Signed in as %@",json);
+                                   
+                                   if([[json valueForKey:@"status"]intValue]){
+                                       
+                                       
+                                       [self.delegate webserviceForLogin:YES withGoogleResponseDic:json];
+                                   }
+                               }
+                           }];
     
     
     
-    NSLog(@"Successfully logged In /n : %@",user.profile.email);
-    
-    
-//
-//    NSString *signinEndpoint = @"http://dev.elar.se/mobile_api/login_using_email";
-//    NSDictionary *params = @{@"idtoken": idToken};
-//
-//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:signinEndpoint];
-//    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-//    [request setHTTPMethod:@"POST"];
-//    [request setHTTPBody:[self httpBodyForParamsDictionary:params]];
-//
-//    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-//    [NSURLConnection sendAsynchronousRequest:request
-//                                       queue:queue
-//                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-//                               if (error) {
-//                                   NSLog(@"Error: %@", error.localizedDescription);
-//                               } else {
-//                                   NSLog(@"Signed in as %@", data.bytes);
-//                               }
-//                           }];
-    
-    
-    
-    // ...
 }
 - (NSData *)httpBodyForParamsDictionary:(NSDictionary *)paramDictionary
 {
@@ -603,7 +602,7 @@ didDisconnectWithUser:(GIDGoogleUser *)user
     //    NSDictionary *body = @{@"snippet": @{@"topLevelComment":@{@"snippet":@{@"textOriginal":self.commentToPost.text}},@"videoId":self.videoIdPostingOn}};
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:nil];
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@",TERM_OF_CONDITION_URL]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/mobile_api/get_userterms_formobile",[Utilities API_link_url_subDomain]]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                        timeoutInterval:60.0];
