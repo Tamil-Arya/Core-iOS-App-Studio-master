@@ -1105,7 +1105,10 @@ customerListServicecount = 0;
     {
         [self mStartIndicater];
         
-        [self performSelector:@selector(webserviceForLogin:withGoogleResponseDic:) withObject:nil afterDelay:0.5];
+        [self performSelector:@selector(webserviceForLogin) withObject:nil afterDelay:0.5];
+        
+      
+
         
 
     }
@@ -1184,26 +1187,63 @@ customerListServicecount = 0;
 #pragma mark - -*********************
 #pragma mark CallTheServer_Login_API Method
 #pragma mark - -*********************
-
 -(void) webserviceForLogin :(BOOL)isGoogleLogin withGoogleResponseDic:(NSMutableDictionary *)loginResponseDic {
     
-    NSString *requestString;
+    NSString *requestString = [NSString stringWithFormat:@"securityKey=%@&username=%@&password=%@&device_token_app=%@&user_type_app=%@&language=%@&login_access_by_google=1",@"H67jdS7wwfh",[loginResponseDic valueForKey:@"username"],[loginResponseDic valueForKey:@"password"],[[NSUserDefaults standardUserDefaults]valueForKey:@"device_token_app"],[[NSUserDefaults standardUserDefaults]valueForKey:@"user_type_app"],[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"]];
     
-    if(isGoogleLogin){
-        
-            requestString = [NSString stringWithFormat:@"securityKey=%@&username=%@&password=%@&device_token_app=%@&user_type_app=%@&language=%@&login_access_by_google=1",@"H67jdS7wwfh",[loginResponseDic valueForKey:@"username"],[loginResponseDic valueForKey:@"password"],[[NSUserDefaults standardUserDefaults]valueForKey:@"device_token_app"],[[NSUserDefaults standardUserDefaults]valueForKey:@"user_type_app"],[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"]];
-            [[NSUserDefaults standardUserDefaults]setObject:[loginResponseDic valueForKey:@"username"] forKey:@"emailid"];
-            [[NSUserDefaults standardUserDefaults]setObject:[loginResponseDic valueForKey:@"password"] forKey:@"password"];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-            
-        
-    }else{
-        requestString = [NSString stringWithFormat:@"securityKey=%@&username=%@&password=%@&device_token_app=%@&user_type_app=%@&language=%@",@"H67jdS7wwfh",email_TXT.text,Passwprd_TXT.text,[[NSUserDefaults standardUserDefaults]valueForKey:@"device_token_app"],[[NSUserDefaults standardUserDefaults]valueForKey:@"user_type_app"],[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"]];
-        [[NSUserDefaults standardUserDefaults]setObject:email_TXT.text forKey:@"emailid"];
-        [[NSUserDefaults standardUserDefaults]setObject:Passwprd_TXT.text forKey:@"password"];
+        [[NSUserDefaults standardUserDefaults]setObject:[loginResponseDic valueForKey:@"username"] forKey:@"emailid"];
+        [[NSUserDefaults standardUserDefaults]setObject:[loginResponseDic valueForKey:@"password"] forKey:@"password"];
         [[NSUserDefaults standardUserDefaults] synchronize];
-    }
     
+    NSData *postData = [requestString dataUsingEncoding:NSUTF8StringEncoding];
+    //        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:requestString options:0 error:&error];
+    NSString *jsonString = [[NSString alloc] initWithData:postData encoding:NSUTF8StringEncoding];
+    
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    
+    NSLog(@"[NSUserDefaults standardUserDefaults]valueForKey:@sub_domain] %@",[[NSUserDefaults standardUserDefaults]valueForKey:@"sub_domain"]);
+    
+    
+    
+    //    [NSString stringWithFormat:@"%@users/login",[Utilities API_link_url_subDomain]]
+    
+    
+    NSMutableURLRequest *req = [[AFJSONRequestSerializer serializer] requestWithMethod:@"POST" URLString:[NSString stringWithFormat:@"%@users/login",[Utilities API_link_url_subDomain]] parameters:nil error:nil];
+    
+    req.timeoutInterval= [[[NSUserDefaults standardUserDefaults] valueForKey:@"timeoutInterval"] longValue];
+    //        [req setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    //        [req setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [req setValue:[NSString stringWithFormat:@"%lu", (unsigned long)postData.length] forHTTPHeaderField:@"Content-Length"];
+    
+    [req setValue:@"application/x-www-form-urlencoded charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    [req setHTTPBody:[jsonString dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    
+    [[manager dataTaskWithRequest:req completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+        [self mStopIndicater];
+        if (!error) {
+            NSLog(@"Reply JSON: %@", responseObject);
+            
+            if ([responseObject isKindOfClass:[NSDictionary class]]) {
+                //blah blah
+                //                    [self ];
+                [self CallTheServer_Login_API:responseObject];
+            }
+        } else {
+            NSLog(@"Error: %@, %@, %@", error, response, responseObject);
+        }
+        [self mStopIndicater];
+    }] resume];
+}
+
+-(void) webserviceForLogin  {
+    
+    NSString *requestString = [NSString stringWithFormat:@"securityKey=%@&username=%@&password=%@&device_token_app=%@&user_type_app=%@&language=%@",@"H67jdS7wwfh",email_TXT.text,Passwprd_TXT.text,[[NSUserDefaults standardUserDefaults]valueForKey:@"device_token_app"],[[NSUserDefaults standardUserDefaults]valueForKey:@"user_type_app"],[[NSUserDefaults standardUserDefaults]valueForKey:@"langugae"]];
+    
+    
+    [[NSUserDefaults standardUserDefaults]setObject:email_TXT.text forKey:@"emailid"];
+    [[NSUserDefaults standardUserDefaults]setObject:Passwprd_TXT.text forKey:@"password"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     
  //   NSLog(@"email===>%@ password===> %@",[[NSUserDefaults standardUserDefaults]valueForKey:@"emailid"],[[NSUserDefaults standardUserDefaults]valueForKey:@"password"]);
     
@@ -1275,9 +1315,7 @@ customerListServicecount = 0;
         NSLog(@"dict=>%@",dict_Login);
         
         if ([[dict_Login valueForKey:@"status"] isEqualToString:@"true"]) {
-            
-            
-            
+                        
             [[NSUserDefaults standardUserDefaults]setObject:@"Login" forKey:@"LoginStatues"];
             [[NSUserDefaults standardUserDefaults]synchronize];
             
@@ -1799,15 +1837,6 @@ customerListServicecount = 0;
     }
     return YES;
 }
-
-
-- (IBAction)didTapSignOut:(id)sender {
-    [[GIDSignIn sharedInstance] signOut];
-}
-
-//----------------------------------------------------------------------------
-
-
 
 
 @end
